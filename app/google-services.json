@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "546474236420",
+    "project_id": "the-game-3640c",
+    "storage_bucket": "the-game-3640c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546474236420:android:3a1d9cd750d673c7ebb351",
+        "android_client_info": {
+          "package_name": "com.example.integradoraiot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaaqi6U0bx-m1c8ypDsiVtIGSVOaNkVwQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
