@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.integradoraiot" />
+                  <option name="mobileSdkAppId" value="1:546474236420:android:3a1d9cd750d673c7ebb351" />
+                  <option name="projectId" value="the-game-3640c" />
+                  <option name="projectNumber" value="546474236420" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
