@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="azul">#FF1565C0</color>
     <color name="gris">#FFBDBDBD</color>
+    <color name="morado">#8636ce</color>
+    <color name="input_boton">#a260da</color>
+    <color name="registro_boton">#ff828d</color>
 </resources>

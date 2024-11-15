@@ -5,9 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.integradoraiot.R;
+import com.example.integradoraiot.network.ApiService;
+import com.example.integradoraiot.network.RetroFitClient;
+import com.example.integradoraiot.models.RegisterRequest;
+import com.example.integradoraiot.models.RegisterResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SplashActivityRegistro extends AppCompatActivity {
 
@@ -16,9 +26,8 @@ public class SplashActivityRegistro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
+
         EditText NombreEditText = findViewById(R.id.nombre_edit_text);
-        EditText ApellidosEditText = findViewById(R.id.apellido_edit_text);
-        EditText TelefonoEditText = findViewById(R.id.telefono_edit_text);
         EditText CorreoEditText = findViewById(R.id.correo_edit_text);
         EditText ContraseñaEditText = findViewById(R.id.contrasena_edit_text);
         Button registroButton = findViewById(R.id.registrar_button);
@@ -27,17 +36,44 @@ public class SplashActivityRegistro extends AppCompatActivity {
         registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String Nombre = NombreEditText.getText().toString();
-                String Apellidos = ApellidosEditText.getText().toString();
-                String Telefono = TelefonoEditText.getText().toString();
-                String Correo = CorreoEditText.getText().toString();
-                String Contraseña = ContraseñaEditText.getText().toString();
+                String nombre = NombreEditText.getText().toString().trim();
+                String correo = CorreoEditText.getText().toString().trim();
+                String contrasena = ContraseñaEditText.getText().toString().trim();
 
-                // (FALTA) código para guardar el usuario, validar campos, etc.
+                // Validar que los campos no estén vacíos
+                if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
+                    Toast.makeText(SplashActivityRegistro.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
-                Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
-                startActivity(intent);
-                finish();
+                // Crear una instancia de Retrofit y el servicio
+                ApiService apiService = RetroFitClient.getClient().create(ApiService.class);
+
+                // Crear el cuerpo de la petición
+                RegisterRequest request = new RegisterRequest(correo, contrasena, nombre);
+
+                // Llamar al endpoint de registro
+                Call<RegisterResponse> call = apiService.register(request);
+                call.enqueue(new Callback<RegisterResponse>() {
+                    @Override
+                    public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            Toast.makeText(SplashActivityRegistro.this, "Registro exitoso: " + response.body().getUser().getNombre(), Toast.LENGTH_SHORT).show();
+
+                            // Redirigir al login
+                            Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(SplashActivityRegistro.this, "Error al registrar", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                        Toast.makeText(SplashActivityRegistro.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -49,6 +85,5 @@ public class SplashActivityRegistro extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }
