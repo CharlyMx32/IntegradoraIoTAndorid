@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gris">
+
+    <Button
+        android:id="@+id/regreso_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Regresar"
+        android:background="@drawable/boton_login"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/bienvenido_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/bienvenido_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/Crea"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombre_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/Nombre"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/bienvenido_text"
+        app:layout_constraintTop_toBottomOf="@id/bienvenido_text" />
+
+    <EditText
+        android:id="@+id/nombre_edit_text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/estilo_login"
+        android:hint="@string/Nombre"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/nombre_text"
+        app:layout_constraintTop_toBottomOf="@id/nombre_text" />
+
+    <TextView
+        android:id="@+id/apellido_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/Apellido"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/nombre_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/nombre_edit_text" />
+
+    <EditText
+        android:id="@+id/apellido_edit_text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/estilo_login"
+        android:hint="@string/Apellido"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/apellido_text"
+        app:layout_constraintTop_toBottomOf="@id/apellido_text"/>
+
+    <TextView
+        android:id="@+id/telefono_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/Telefono"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/apellido_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/apellido_edit_text" />
+
+    <EditText
+        android:id="@+id/telefono_edit_text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/estilo_login"
+        android:hint="@string/Telefono"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/telefono_text"
+        app:layout_constraintTop_toBottomOf="@id/telefono_text"/>
+
+    <TextView
+        android:id="@+id/correo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/Correo"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/telefono_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/telefono_edit_text" />
+
+    <EditText
+        android:id="@+id/correo_edit_text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/estilo_login"
+        android:hint="@string/Correo"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/correo_text"
+        app:layout_constraintTop_toBottomOf="@id/correo_text"/>
+
+    <TextView
+        android:id="@+id/contrasena_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/Contraseña"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/correo_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/correo_edit_text" />
+
+    <EditText
+        android:id="@+id/contrasena_edit_text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/estilo_login"
+        android:hint="@string/Contraseña"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/contrasena_text"
+        app:layout_constraintTop_toBottomOf="@id/contrasena_text"/>
+
+   <Button
+       android:id="@+id/registrar_button"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/Registrarse"
+       android:background="@drawable/boton_login"
+       android:layout_marginTop="15dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/contrasena_edit_text"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
