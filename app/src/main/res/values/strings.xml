@@ -14,4 +14,8 @@
     <string name="Correo">Correo</string>
     <string name="Registrar">Registrar</string>
     <string name="Regresar">Regresar</string>
+    <string name="Bienvenido">Vamos a</string>
+    <string name="Bienvenido2">aprender</string>
+    <string name="Inicio">Pon a prueba tus habilidades</string>
+    <string name="Inicio2">y diviertete mientras aprendes...</string>
 </resources>
