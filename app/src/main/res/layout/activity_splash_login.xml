@@ -14,7 +14,7 @@
         android:text="@string/Hola"
         android:textColor="@color/morado"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="31sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="200dp"
@@ -27,7 +27,7 @@
         android:text="@string/Hola2"
         android:textColor="@color/morado"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="31sp"
         app:layout_constraintStart_toStartOf="@id/bienvenido_text"
         app:layout_constraintTop_toTopOf="@id/bienvenido_text"
         android:layout_marginTop="30dp" />
