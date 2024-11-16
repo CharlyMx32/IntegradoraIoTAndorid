@@ -31,7 +31,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
         EditText CorreoEditText = findViewById(R.id.correo_edit_text);
         EditText ContraseñaEditText = findViewById(R.id.contrasena_edit_text);
         Button registroButton = findViewById(R.id.registrar_button);
-        Button regresarButton = findViewById(R.id.regreso_button);
 
         registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,15 +73,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
                         Toast.makeText(SplashActivityRegistro.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
-        });
-
-        regresarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
-                startActivity(intent);
-                finish();
             }
         });
     }

@@ -7,4 +7,6 @@
     <color name="morado">#8636ce</color>
     <color name="input_boton">#a260da</color>
     <color name="registro_boton">#ff828d</color>
+    <color name="facebook_azul">#4d77d1</color>
+    <color name="google_rojo">#f76656</color>
 </resources>
