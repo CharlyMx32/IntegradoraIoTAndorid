@@ -27,4 +27,10 @@
     <string name="Facebook">Facebook</string>
     <string name="Google">Google</string>
     <string name="Listo">Listo</string>
+    <string-array name="sexo_options">
+        <item>Masculino</item>
+        <item>Femenino</item>
+        <item>Otro</item>
+    </string-array>
+
 </resources>

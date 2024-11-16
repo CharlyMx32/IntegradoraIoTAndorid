@@ -1,9 +1,0 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <solid android:color="#F99A2B" />
-            <corners android:radius="16dp" /> <!-- Bordes redondeados -->
-            <size android:width="100dp" android:height="100dp" />
-        </shape>
-    </item>
-</layer-list>
