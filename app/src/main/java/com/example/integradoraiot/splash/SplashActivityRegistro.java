@@ -30,7 +30,7 @@ public class SplashActivityRegistro extends AppCompatActivity {
         EditText NombreEditText = findViewById(R.id.nombre_edit_text);
         EditText CorreoEditText = findViewById(R.id.correo_edit_text);
         EditText ContraseñaEditText = findViewById(R.id.contrasena_edit_text);
-        Button registroButton = findViewById(R.id.registrar_button);
+        Button registroButton = findViewById(R.id.listo_button);
 
         registroButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +39,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
                 String correo = CorreoEditText.getText().toString().trim();
                 String contrasena = ContraseñaEditText.getText().toString().trim();
 
-                // Validar que los campos no estén vacíos
                 if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
                     Toast.makeText(SplashActivityRegistro.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
                     return;

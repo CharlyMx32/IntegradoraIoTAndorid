@@ -5,7 +5,9 @@
     <string name="Usuario">Usuario</string>
     <string name="Contraseña">Contraseña</string>
     <string name="Iniciar">Iniciar Sesión</string>
-    <string name="Cuenta">¿No tienes cuenta?</string>
+    <string name="Cuenta">¿Ya tienes cuenta?</string>
+    <string name="Cuenta2">¿No tienes cuenta?</string>
+    <string name="Olvide">¿Olvidaste tu correo/contraseña?</string>
     <string name="Registrarse">Registrarse</string>
     <string name="Crea">Crea tu Cuenta</string>
     <string name="Nombre">Nombre</string>
@@ -18,4 +20,11 @@
     <string name="Bienvenido2">aprender</string>
     <string name="Inicio">Pon a prueba tus habilidades</string>
     <string name="Inicio2">y diviertete mientras aprendes...</string>
+    <string name="Aprender">¿Listo</string>
+    <string name="Aprender2">para aprender?</string>
+    <string name="Hola">¡Hola</string>
+    <string name="Hola2">de nuevo!</string>
+    <string name="Facebook">Facebook</string>
+    <string name="Google">Google</string>
+    <string name="Listo">Listo</string>
 </resources>
