@@ -2,10 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="azul">#FF1565C0</color>
     <color name="gris">#FFBDBDBD</color>
-    <color name="morado">#8636ce</color>
     <color name="input_boton">#a260da</color>
-    <color name="registro_boton">#ff828d</color>
     <color name="fondo_login">#f9d8d4</color>
+
+
+    <color name="google_naranja">#f76656</color>
+    <color name="facebook_azul">#4d77d1</color>
+    <color name="Burple">#8636CE</color>
+    <color name="Bink">#FF828D</color>
+    <color name="Nlue">#ADD5D5</color>
+    <color name="Blementine">#F78B64</color>
+    <color name="Biolet">#ADD5D5</color>
 </resources>
