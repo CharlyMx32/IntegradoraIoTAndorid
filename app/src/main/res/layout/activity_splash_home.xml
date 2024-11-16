@@ -57,7 +57,7 @@
         android:text="@string/Iniciar"
         android:textSize="20sp"
         android:textColor="@color/white"
-        android:background="@drawable/boton_login"
+        android:backgroundTint="@color/Bink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/inicio2_text"
@@ -70,72 +70,19 @@
         android:text="@string/Registrarse"
         android:textSize="20sp"
         android:textColor="@color/white"
-        android:background="@drawable/boton_login"
+        android:backgroundTint="@color/Burple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/iniciar_sesion_button"
         android:layout_marginTop="85dp"/>
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/logo_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/registro_home_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/registro_home_button"
-        android:layout_marginTop="140dp">
-
-        <ImageView
-            android:id="@+id/head"
-            android:layout_width="510dp"
-            android:layout_height="500dp"
-            android:background="@drawable/cabeza_animal" />
-
-        <ImageView
-            android:id="@+id/ojo_derecho"
-            android:layout_width="170dp"
-            android:layout_height="200dp"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/ojo_animal"
-            android:rotation="30"/>
-
-        <ImageView
-            android:id="@+id/ojo_izquierdo"
-            android:layout_width="150dp"
-            android:layout_height="200dp"
-            app:layout_constraintStart_toStartOf="@id/ojo_derecho"
-            android:layout_marginStart="210dp"
-            android:layout_alignTop="@id/head"
-            android:background="@drawable/ojo_animal"
-            android:rotation="-30"/>
-
-        <ImageView
-            android:id="@+id/pupila_derecha"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="110dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/pupila_animal"
-            android:rotation="30"/>
-
-        <ImageView
-            android:id="@+id/pupila_izquierda"
-            android:layout_width="50dp"
-            android:layout_height="60dp"
-            app:layout_constraintStart_toStartOf="@id/pupila_derecha"
-            android:layout_marginStart="250dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/pupila_animal"
-            android:rotation="-30"/>
-
-        <ImageView
-            android:id="@+id/pico"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="170dp"
-            android:background="@drawable/pico_animal"/>
-    </RelativeLayout>
+        android:src="@drawable/gamy"
+        android:layout_marginBottom="-150dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

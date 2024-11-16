@@ -16,7 +16,7 @@ public class SplashActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_login);
 
-        Button loginButton = findViewById(R.id.login_button);
+        Button loginButton = findViewById(R.id.iniciar_sesion_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
