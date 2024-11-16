@@ -5,10 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/morado"
-    tools:context=".YourActivityName">
+    android:background="@color/morado">
 
     <!-- Imagen de la aplicación -->
+
+    <ImageView
+        android:id="@+id/icono_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Texto de bienvenida -->
     <TextView
@@ -85,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/facebook_blue"
+        android:backgroundTint="@color/facebook_azul"
         android:text="Facebook"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/contrasena_edit_text"
@@ -99,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
-        android:backgroundTint="@color/google_red"
+        android:backgroundTint="@color/google_rojo"
         android:text="Google"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/contrasena_edit_text"
@@ -125,8 +134,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:backgroundTint="@color/registrar_button_color"
-        android:text="I'm Ready"
+        android:backgroundTint="@color/registro_boton"
+        android:text="Estoy Listo"
         android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/sign_in_text"
         app:layout_constraintStart_toStartOf="parent"
