@@ -23,10 +23,10 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".ui.SplashActivityRegistro"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".ui.SplashActivityLogin"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".ui.SplashActivityVentanas"/>
         <activity android:name=".ui.SplashActivityFrag3"/>
