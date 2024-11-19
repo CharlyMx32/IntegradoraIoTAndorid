@@ -3,7 +3,6 @@ package com.example.integradoraiot.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -29,18 +28,17 @@ public class SplashActivityRegistro extends AppCompatActivity {
 
         // Inicializar los campos de texto
         EditText nombreEditText = findViewById(R.id.nombre_edit_text);
+        EditText apellidoEditText = findViewById(R.id.apellido_edit_text);
         EditText correoEditText = findViewById(R.id.correo_edit_text);
         EditText contrasenaEditText = findViewById(R.id.contrasena_edit_text);
-        EditText apellidoEditText = findViewById(R.id.apellido_edit_text);
         TextView loginText = findViewById(R.id.login_text);
         Spinner sexoSpinner = findViewById(R.id.sexo_spinner);
         TextView fechaNacimientoTextView = findViewById(R.id.fecha_nacimiento_text);
 
         contrasenaEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
 
-        setEnterActionListener(nombreEditText, correoEditText);
-        setEnterActionListener(correoEditText, contrasenaEditText);
-        setEnterActionListener(contrasenaEditText, apellidoEditText);
+        // Configurar el comportamiento de las teclas "Enter"
+        setupEnterKeyBehavior();
 
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
 
@@ -74,16 +72,37 @@ public class SplashActivityRegistro extends AppCompatActivity {
         });
 
         // Configurar el listener para el TextView (loginText)
-        loginText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
-                startActivity(intent);
-            }
+        loginText.setOnClickListener(v -> {
+            Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
+            startActivity(intent);
         });
     }
 
-    // Método para configurar el listener de "Enter"
+    // Configurar la acción de "Enter" para los EditText
+    private void setupEnterKeyBehavior() {
+        EditText nombreEditText = findViewById(R.id.nombre_edit_text);
+        EditText apellidoEditText = findViewById(R.id.apellido_edit_text);
+        EditText correoEditText = findViewById(R.id.correo_edit_text);
+        EditText contrasenaEditText = findViewById(R.id.contrasena_edit_text);
+
+        setNextFocus(nombreEditText, apellidoEditText);
+        setNextFocus(apellidoEditText, correoEditText);
+        setNextFocus(correoEditText, contrasenaEditText);
+    }
+
+    // Método para establecer el foco en el siguiente EditText
+    private void setNextFocus(EditText currentEditText, EditText nextEditText) {
+        currentEditText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_NEXT ||
+                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+                nextEditText.requestFocus();
+                return true;
+            }
+            return false;
+        });
+    }
+
+    // Método para configurar el listener de "Enter" con opciones adicionales
     private void setEnterActionListener(EditText currentEditText, final EditText nextEditText) {
         currentEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE ||
@@ -101,7 +120,7 @@ public class SplashActivityRegistro extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(currentEditText.getWindowToken(), 0);
                 }
 
-                return true; // Indica que hemos manejado el evento
+                return true;
             }
             return false;
         });
