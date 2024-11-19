@@ -25,14 +25,12 @@ public class SplashActivityFrag3 extends Fragment {
         // Encuentra el botón usando 'view.findViewById'
         Button siguienteButton = view.findViewById(R.id.siguiente_Button);
 
-        // Configura el listener para el botón
-        siguienteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Crea la intención para iniciar la siguiente actividad
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
+
+        siguienteButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), MainActivity.class);
+            startActivity(intent);
+            requireActivity().finish();
+
         });
 
         return view;
