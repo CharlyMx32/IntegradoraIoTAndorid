@@ -25,7 +25,6 @@ public class SplashActivityFrag3 extends Fragment {
         siguienteButton.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), MainActivity.class);
             startActivity(intent);
-
             requireActivity().finish();
         });
 
