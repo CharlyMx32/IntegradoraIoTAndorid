@@ -5,7 +5,6 @@ public class User {
     private String nombre;
     private String email;
 
-    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -18,7 +17,7 @@ public class User {
         return nombre;
     }
 
-    public void setNombre(String name) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 

@@ -85,8 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/registro_home_button"
-        app:layout_constraintWidth_percent="1.1"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        app:layout_constraintWidth_percent="1.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
