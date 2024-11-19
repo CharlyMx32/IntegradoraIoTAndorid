@@ -45,6 +45,11 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    //modelo vista vista-modelo
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    implementation ("androidx.databinding:databinding-runtime:8.1.0")
+
     // facebook
     implementation ("com.facebook.android:facebook-applinks:latest.release")
     implementation ("com.facebook.android:facebook-common:latest.release")
