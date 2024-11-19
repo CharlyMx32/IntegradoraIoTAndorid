@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/Burple">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -47,7 +46,7 @@
 
     <EditText
         android:id="@+id/nombre_edit_text"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="50dp"
@@ -58,11 +57,12 @@
         android:textColor="#333333"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/bienvenido2_text"
-        app:layout_constraintTop_toBottomOf="@id/bienvenido2_text" />
+        app:layout_constraintTop_toBottomOf="@id/bienvenido2_text"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/apellido_edit_text"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
@@ -72,12 +72,12 @@
         android:padding="12dp"
         android:textColor="#333333"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/correo_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bienvenido2_text" />
 
     <EditText
         android:id="@+id/correo_edit_text"
-        android:layout_width="342dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/input_morado"
@@ -87,12 +87,12 @@
         android:textColor="#333333"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/nombre_edit_text"
-        app:layout_constraintTop_toBottomOf="@id/nombre_edit_text" />
-
+        app:layout_constraintTop_toBottomOf="@id/nombre_edit_text"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/contrasena_edit_text"
-        android:layout_width="342dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/input_morado"
@@ -102,11 +102,12 @@
         android:textColor="#333333"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@id/correo_edit_text"
-        app:layout_constraintTop_toBottomOf="@id/correo_edit_text" />
+        app:layout_constraintTop_toBottomOf="@id/correo_edit_text"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/sexo_spinner"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/input_morado"
         android:minHeight="48dp"
@@ -114,17 +115,18 @@
         android:layout_marginBottom="20dp"
         android:entries="@array/sexo_options"
         android:padding="12dp"
-        app:layout_constraintStart_toStartOf="@+id/contrasena_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/contrasena_edit_text" />
+        app:layout_constraintStart_toStartOf="@id/contrasena_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/contrasena_edit_text"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/fecha_nacimiento_text"
-        android:layout_width="160dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/input_morado"
         android:clickable="true"
         android:focusable="true"
-        android:hint="Fecha Naciemiento"
+        android:hint="Fecha Nacimiento"
         android:maxHeight="48dp"
         android:minHeight="48dp"
         android:layout_marginTop="20dp"
@@ -132,8 +134,8 @@
         android:padding="12dp"
         android:textColor="#333333"
         android:textSize="15.8sp"
-        app:layout_constraintEnd_toEndOf="@+id/contrasena_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/contrasena_edit_text" />
+        app:layout_constraintEnd_toEndOf="@id/contrasena_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/contrasena_edit_text" />
 
     <TextView
         android:id="@+id/no_text"
@@ -173,5 +175,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_text"
         app:layout_constraintVertical_bias="0.234" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
