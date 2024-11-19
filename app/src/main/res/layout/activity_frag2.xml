@@ -20,7 +20,7 @@
         android:id="@+id/imagen_zigzag"
         android:layout_width="0dp"
         android:layout_height="170dp"
-        android:src="@drawable/zigzag"
+        android:src="@drawable/zigzag_salmon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="170dp"
