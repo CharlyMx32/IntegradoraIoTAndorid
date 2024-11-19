@@ -16,6 +16,7 @@
     <string name="Correo">Correo</string>
     <string name="Registrar">Registrar</string>
     <string name="Regresar">Regresar</string>
+    <string name="Siguiente">Siguiente</string>
     <string name="Bienvenido">Vamos a</string>
     <string name="Bienvenido2">aprender</string>
     <string name="Inicio">Pon a prueba tus habilidades</string>
@@ -32,5 +33,31 @@
         <item>Femenino</item>
         <item>Otro</item>
     </string-array>
+    <string name="view1">¡Bienvenido</string>
+    <string name="view2">a GAME!</string>
+
+    <string name="frag2_titulo">
+        Nuestro objetivo...
+    </string>
+
+    <string name="frag2_descrip">
+        Queremos fomentar a los niños\n
+        a desarrollar sus habilidades cognitivas\n
+        y motoras, todo mientras se divierten
+    </string>
+
+    <string name="frag3_titulo">
+        ¡Vamos\n
+        a empezar!
+    </string>
+
+    <string name="frag3_descrp">
+        Juega y aprende ahrora mismo...
+    </string>
+
+    <string name="descripciones">
+        Un juego donde\n
+        fomentamos el aprendizaje...
+    </string>
 
 </resources>

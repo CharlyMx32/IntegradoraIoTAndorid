@@ -20,7 +20,7 @@ public class SplashActivityLogin extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SplashActivityLogin.this, MainActivity.class);
+                Intent intent = new Intent(SplashActivityLogin.this, SplashActivityVentanas.class);
                 startActivity(intent);
                 finish();
             }
@@ -29,7 +29,7 @@ public class SplashActivityLogin extends AppCompatActivity {
         TextView registrarseText = findViewById(R.id.registro_text);
         registrarseText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //aqui iba SplashActivityRegistro
                 Intent intent = new Intent(SplashActivityLogin.this, SplashActivityRegistro.class);
                 startActivity(intent);
                 finish();

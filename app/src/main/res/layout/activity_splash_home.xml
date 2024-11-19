@@ -78,13 +78,12 @@
 
     <ImageView
         android:id="@+id/logo_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="300dp"
         android:src="@drawable/gamy"
-        android:layout_marginBottom="-150dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-
+        android:layout_marginTop="75dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/registro_home_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
