@@ -27,40 +27,27 @@
         app:tabIndicatorColor="@android:color/transparent"
         app:tabIndicatorHeight="0dp"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@android:color/transparent"
-        app:tabTextColor="@android:color/transparent"
-        app:tabPaddingStart="50dp"
-        app:tabPaddingEnd="10dp"
-        app:tabPaddingTop="8dp"
-        app:tabPaddingBottom="8dp">
+        app:tabTextColor="@android:color/transparent">
 
         <com.google.android.material.tabs.TabItem
             android:text=" "
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:contentDescription="Primer Tab"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"/>
+            android:layout_width="10dp"
+            android:contentDescription="Primer Tab"/>
 
         <com.google.android.material.tabs.TabItem
             android:text=" "
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
+            android:layout_width="10dp"
             android:contentDescription="Segundo Tab"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
             />
 
         <com.google.android.material.tabs.TabItem
             android:text=" "
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:contentDescription="Tercer Tab"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp" />
+            android:layout_width="10dp"
+            android:contentDescription="Tercer Tab" />
 
     </com.google.android.material.tabs.TabLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
