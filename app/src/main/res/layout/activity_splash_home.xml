@@ -78,10 +78,10 @@
 
     <ImageView
         android:id="@+id/logo_image"
-        android:layout_width="350dp"
-        android:layout_height="300dp"
-        android:src="@drawable/gamy"
-        android:layout_marginTop="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gamyy"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/registro_home_button" />
