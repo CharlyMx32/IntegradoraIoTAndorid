@@ -26,6 +26,7 @@
         <activity android:name=".ui.SplashActivityLogin"/>
         <activity android:name=".ui.SplashActivityVentanas"/>
         <activity android:name=".ui.SplashActivityFrag3"/>
+        <activity android:name="SplashActivityRegistro" />
     </application>
 
 </manifest>
