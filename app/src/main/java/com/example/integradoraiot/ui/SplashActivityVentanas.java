@@ -1,4 +1,4 @@
-package com.example.integradoraiot.splash;
+package com.example.integradoraiot.ui;
 
 import android.os.Bundle;
 
@@ -10,7 +10,6 @@ import com.example.integradoraiot.R;
 import com.example.integradoraiot.viewPage.ViewPageAdapter;
 import com.example.integradoraiot.viewPage.frag1;
 import com.example.integradoraiot.viewPage.frag2;
-import com.example.integradoraiot.viewPage.frag3;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

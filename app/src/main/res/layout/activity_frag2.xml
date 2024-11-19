@@ -9,7 +9,6 @@
         android:id="@+id/imagen_view2"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/view2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

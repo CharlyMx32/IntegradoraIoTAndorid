@@ -13,7 +13,7 @@
         android:theme="@style/Theme.IntegradoraIoT"
         tools:targetApi="31" >
         <activity
-            android:name=".splash.SplashActivityHome"
+            android:name=".ui.SplashActivityHome"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".splash.SplashActivityRegistro"/>
-        <activity android:name=".splash.SplashActivityLogin"/>
-        <activity android:name=".splash.SplashActivityVentanas"/>
-        <activity android:name=".splash.SplashActivityFrag3"/>
+        <activity android:name=".ui.SplashActivityRegistro"/>
+        <activity android:name=".ui.SplashActivityLogin"/>
+        <activity android:name=".ui.SplashActivityVentanas"/>
+        <activity android:name=".ui.SplashActivityFrag3"/>
     </application>
 
 </manifest>

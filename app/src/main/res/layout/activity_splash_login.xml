@@ -7,18 +7,30 @@
     android:layout_height="match_parent"
     android:background="@color/fondo_login">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/sikra_sincuerpo_morado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintWidth_percent="0.9" />
+
     <TextView
         android:id="@+id/bienvenido_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="25dp"
         android:text="@string/Hola"
         android:textColor="@color/Burple"
-        android:textStyle="bold"
         android:textSize="31sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="34dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/bienvenido2_text"
@@ -36,8 +48,8 @@
         android:id="@+id/correo_edit_text"
         android:layout_width="342dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/estilo_login"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/input_blanco"
         android:hint="@string/Correo"
         android:minHeight="48dp"
         android:padding="12dp"
@@ -51,7 +63,7 @@
         android:layout_width="342dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/estilo_login"
+        android:background="@drawable/input_blanco"
         android:hint="@string/Contraseña"
         android:minHeight="48dp"
         android:padding="12dp"
@@ -99,14 +111,15 @@
         android:id="@+id/iniciar_sesion_button"
         android:layout_width="330dp"
         android:layout_height="70dp"
-        android:text="@string/Iniciar"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/Bink"
+        android:text="@string/Iniciar"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registro_text"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintTop_toBottomOf="@id/registro_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
