@@ -1,6 +1,7 @@
 package com.example.integradoraiot.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -21,28 +22,64 @@ import java.util.List;
 
 public class SplashActivityVentanas extends AppCompatActivity {
 
+    private ViewPager2 viewPager;
+    private Handler handler;
+    private Runnable runnable;
+    private int currentPage = 0;
+    private int totalPages = 3; // Número total de fragmentos (tabs)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view1);
 
-        ViewPager2 viewPager = findViewById(R.id.viewPager);
+        viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
 
+        // Lista de fragmentos para ViewPager2
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new frag1());
         fragmentList.add(new frag2());
         fragmentList.add(new SplashActivityFrag3());
 
+        // Adapter para ViewPager2
         ViewPageAdapter adapter = new ViewPageAdapter(this, fragmentList);
         viewPager.setAdapter(adapter);
 
+        // Configurar TabLayout con ViewPager2
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            // Este método es donde podemos hacer ajustes adicionales
+            // Aquí puedes personalizar las pestañas si es necesario
         }).attach();
 
-        // Personalizamos las vistas de las pestañas para agregar márgenes
         customizeTabLayout(tabLayout);
+
+        // Método para cambiar las pestañas automáticamente cada cierto tiempo
+        startAutoPageChange();
+
+    }
+
+
+    private void startAutoPageChange() {
+        handler = new Handler();
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                // Cambiar a la siguiente página
+                currentPage = (currentPage + 1) % totalPages; // Volver al principio después de la última página
+                viewPager.setCurrentItem(currentPage, true); // Cambiar la página
+                handler.postDelayed(this, 3000); // 3000 ms = 3 segundos
+            }
+        };
+        handler.postDelayed(runnable, 3000); // Comienza después de 3 segundos
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Detener el cambio automático de página cuando la actividad se destruye
+        if (handler != null) {
+            handler.removeCallbacks(runnable);
+        }
     }
 
     private void customizeTabLayout(TabLayout tabLayout) {
@@ -60,5 +97,6 @@ public class SplashActivityVentanas extends AppCompatActivity {
                 }
             }
         });
+
     }
 }
