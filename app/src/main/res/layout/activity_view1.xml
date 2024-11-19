@@ -9,7 +9,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="0dp"
-        android:layout_height="600dp"
+        android:layout_height="800dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -36,12 +36,18 @@
 
         <com.google.android.material.tabs.TabItem
             android:text=" "
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:contentDescription="Primer Tab" />
         <com.google.android.material.tabs.TabItem
             android:text=" "
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:contentDescription="Segundo Tab" />
         <com.google.android.material.tabs.TabItem
             android:text=" "
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:contentDescription="Tercer Tab" />
     </com.google.android.material.tabs.TabLayout>
 

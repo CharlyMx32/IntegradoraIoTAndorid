@@ -9,11 +9,34 @@
         android:id="@+id/imagen_view2"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/view1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/triangulo"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="150dp" />
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circulo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="236dp"
+        android:src="@drawable/circulo_no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/circulo2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="504dp"
+        android:src="@drawable/circulo_si"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/titulo_view2"

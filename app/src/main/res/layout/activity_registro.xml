@@ -163,7 +163,7 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
-        android:id="@+id/registro_text"
+        android:id="@+id/login_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Iniciar"
@@ -175,17 +175,17 @@
 
     <Button
         android:id="@+id/listo_button"
+        style="@style/BotonBase"
         android:layout_width="330dp"
         android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/input_boton"
         android:text="@string/Listo"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        style="@style/BotonBase"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/input_boton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registro_text"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/login_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

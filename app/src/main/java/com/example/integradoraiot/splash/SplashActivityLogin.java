@@ -29,10 +29,9 @@ public class SplashActivityLogin extends AppCompatActivity {
         TextView registrarseText = findViewById(R.id.registro_text);
         registrarseText.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { //aqui iba SplashActivityRegistro
+            public void onClick(View v) { //aqui iba SplashActivityRegistro
                 Intent intent = new Intent(SplashActivityLogin.this, SplashActivityRegistro.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
