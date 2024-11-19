@@ -1,4 +1,4 @@
-package com.example.integradoraiot.splash;
+package com.example.integradoraiot.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
