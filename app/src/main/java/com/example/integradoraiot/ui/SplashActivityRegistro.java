@@ -1,7 +1,9 @@
 package com.example.integradoraiot.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -30,13 +32,12 @@ public class SplashActivityRegistro extends AppCompatActivity {
         EditText correoEditText = findViewById(R.id.correo_edit_text);
         EditText contrasenaEditText = findViewById(R.id.contrasena_edit_text);
         EditText apellidoEditText = findViewById(R.id.apellido_edit_text);
+        TextView loginText = findViewById(R.id.login_text);
         Spinner sexoSpinner = findViewById(R.id.sexo_spinner);
         TextView fechaNacimientoTextView = findViewById(R.id.fecha_nacimiento_text);
 
-        // Establecer el comportamiento de contraseña
         contrasenaEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
 
-        // Configurar los listeners de Enter
         setEnterActionListener(nombreEditText, correoEditText);
         setEnterActionListener(correoEditText, contrasenaEditText);
         setEnterActionListener(contrasenaEditText, apellidoEditText);
@@ -70,6 +71,15 @@ public class SplashActivityRegistro extends AppCompatActivity {
             }
 
             registerViewModel.registerUser(nombre, apellido, sexo, fechaNacimiento, correo, contrasena);
+        });
+
+        // Configurar el listener para el TextView (loginText)
+        loginText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
+                startActivity(intent);
+            }
         });
     }
 
