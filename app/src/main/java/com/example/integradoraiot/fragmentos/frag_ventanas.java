@@ -1,4 +1,4 @@
-package com.example.integradoraiot.ui;
+package com.example.integradoraiot.fragmentos;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,14 +13,13 @@ import com.example.integradoraiot.R;
 import com.example.integradoraiot.viewPage.ViewPageAdapter;
 import com.example.integradoraiot.viewPage.frag1;
 import com.example.integradoraiot.viewPage.frag2;
-import com.example.integradoraiot.ui.SplashActivityFrag3;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SplashActivityVentanas extends AppCompatActivity {
+public class frag_ventanas extends AppCompatActivity {
 
     private ViewPager2 viewPager;
     private Handler handler;
@@ -40,7 +39,7 @@ public class SplashActivityVentanas extends AppCompatActivity {
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new frag1());
         fragmentList.add(new frag2());
-        fragmentList.add(new SplashActivityFrag3());
+        fragmentList.add(new frag_frag3());
 
         // Adapter para ViewPager2
         ViewPageAdapter adapter = new ViewPageAdapter(this, fragmentList);

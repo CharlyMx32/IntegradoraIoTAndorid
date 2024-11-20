@@ -10,7 +10,7 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface ApiService {
-    @POST("registros")
+    @POST("registro")
     Call<RegisterResponse> register(@Body RegisterRequest request);
 
     @POST("login")

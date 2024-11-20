@@ -24,8 +24,8 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".ui.SplashActivityRegistro"/>
         <activity android:name=".ui.SplashActivityLogin"/>
-        <activity android:name=".ui.SplashActivityVentanas"/>
-        <activity android:name=".ui.SplashActivityFrag3"/>
+        <activity android:name=".fragmentos.frag_ventanas"/>
+        <activity android:name=".fragmentos.frag_frag3"/>
     </application>
 
 </manifest>
