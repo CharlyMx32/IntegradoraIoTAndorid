@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -34,28 +35,15 @@ public class SplashActivityRegistro extends AppCompatActivity {
         EditText apellidoEditText = findViewById(R.id.apellido_edit_text);
         EditText correoEditText = findViewById(R.id.correo_edit_text);
         EditText contrasenaEditText = findViewById(R.id.contrasena_edit_text);
-        TextView loginText = findViewById(R.id.login_text);
+        EditText fechaNacimientoTextView = findViewById(R.id.fecha_nacimiento_text);
         Spinner sexoSpinner = findViewById(R.id.sexo_spinner);
-        TextView fechaNacimientoTextView = findViewById(R.id.fecha_nacimiento_text);
 
-        contrasenaEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+        // Configurar el listener para los campos de texto
+        setKeyPressListener(nombreEditText, apellidoEditText);  // Cuando se presiona ENTER en nombre, pasa a apellido
+        setKeyPressListener(apellidoEditText, correoEditText); // Cuando se presiona ENTER en apellido, pasa a correo
+        setKeyPressListener(correoEditText, contrasenaEditText); // Cuando se presiona ENTER en correo, pasa a contraseña
 
-        // Configurar el comportamiento de las teclas "Enter"
-        setupEnterKeyBehavior();
-
-        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
-
-        registerViewModel.getIsSuccess().observe(this, isSuccess -> {
-            if (isSuccess) {
-                // Redirigir al login
-                // Código para redirigir al login
-            }
-        });
-
-        registerViewModel.getErrorMessage().observe(this, error -> {
-            Toast.makeText(SplashActivityRegistro.this, error, Toast.LENGTH_SHORT).show();
-        });
-
+        // Configurar el listener para el botón de registro
         Button registroButton = findViewById(R.id.listo_button);
         registroButton.setOnClickListener(view -> {
             // Obtener los datos
@@ -130,31 +118,8 @@ public class SplashActivityRegistro extends AppCompatActivity {
         currentEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_NEXT ||
                     (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
+
                 nextEditText.requestFocus();
-                return true;
-            }
-            return false;
-        });
-    }
-
-    // Método para configurar el listener de "Enter" con opciones adicionales
-    private void setEnterActionListener(EditText currentEditText, final EditText nextEditText) {
-        currentEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE ||
-                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) {
-
-                // Limpiar el campo actual
-                currentEditText.setText("");
-
-                // Mover al siguiente campo (si existe)
-                nextEditText.requestFocus();
-
-                // Cerrar el teclado
-                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                if (imm != null) {
-                    imm.hideSoftInputFromWindow(currentEditText.getWindowToken(), 0);
-                }
-
                 return true;
             }
             return false;
