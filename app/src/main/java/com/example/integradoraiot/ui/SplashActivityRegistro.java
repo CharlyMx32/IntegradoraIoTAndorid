@@ -110,10 +110,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
             // Mostrar el diálogo
             datePickerDialog.show();
         });
-
-
-
-
     }
 
 

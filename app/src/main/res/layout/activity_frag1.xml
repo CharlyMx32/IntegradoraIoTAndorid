@@ -28,7 +28,7 @@
         app:layout_constraintWidth_percent="0.3"
         app:layout_constraintHeight_percent="0.2"
         android:layout_marginTop="36dp"
-        android:src="@drawable/trinagulo_salmon"
+        android:src="@drawable/triangulo_salmon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
