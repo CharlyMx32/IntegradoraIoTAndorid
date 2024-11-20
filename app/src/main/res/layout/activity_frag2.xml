@@ -6,6 +6,20 @@
     android:background="@color/view">
 
     <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="1.2"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitXY"
+        android:layout_marginTop="-50dp"
+        android:rotation="180"
+        app:srcCompat="@drawable/fondo_lila" />
+
+    <ImageView
         android:id="@+id/imagen_view3"
         android:layout_width="0dp"
         android:layout_height="200dp"

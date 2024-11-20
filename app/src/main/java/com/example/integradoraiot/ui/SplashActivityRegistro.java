@@ -1,5 +1,6 @@
 package com.example.integradoraiot.ui;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -16,6 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.ui_viewmodel.RegisterViewModel;
+
+import java.util.Calendar;
 
 public class SplashActivityRegistro extends AppCompatActivity {
 
@@ -76,7 +79,43 @@ public class SplashActivityRegistro extends AppCompatActivity {
             Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
             startActivity(intent);
         });
+
+        fechaNacimientoTextView.setOnClickListener(view -> {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            final Calendar minDate = Calendar.getInstance();
+            minDate.set(year - 100, month, day);
+
+            final Calendar maxDate = Calendar.getInstance();
+            maxDate.set(year - 18, month, day);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    SplashActivityRegistro.this,
+                    (datePicker, selectedYear, selectedMonth, selectedDay) -> {
+                        String fechaSeleccionada = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                        fechaNacimientoTextView.setText(fechaSeleccionada);
+                    },
+                    year - 18,
+                    month,
+                    day
+            );
+
+            // Establecer límites para la fecha
+            datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
+            datePickerDialog.getDatePicker().setMaxDate(maxDate.getTimeInMillis());
+
+            // Mostrar el diálogo
+            datePickerDialog.show();
+        });
+
+
+
+
     }
+
 
     // Configurar la acción de "Enter" para los EditText
     private void setupEnterKeyBehavior() {
