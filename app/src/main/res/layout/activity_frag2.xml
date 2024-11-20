@@ -6,10 +6,24 @@
     android:background="@color/view">
 
     <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="1.2"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="fitXY"
+        android:layout_marginTop="-50dp"
+        android:rotation="180"
+        app:srcCompat="@drawable/fondo_lila" />
+
+    <ImageView
         android:id="@+id/imagen_view3"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:src="@drawable/trinagulo_salmon"
+        android:src="@drawable/zigzag_salmon"
         android:layout_marginStart="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,17 +34,29 @@
         android:id="@+id/imagen_zigzag"
         android:layout_width="0dp"
         android:layout_height="170dp"
-        android:src="@drawable/zigzag"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="170dp"
+        android:src="@drawable/triangulo_verde"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/circulo"
+        app:layout_constraintBottom_toTopOf="@+id/imagen_zigzag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toEndOf="@+id/imagen_view3"
         app:layout_constraintWidth_percent="0.4" />
 
     <ImageView
         android:id="@+id/imagen_view2"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:src="@drawable/sikra_parado_apuntando"
+        android:src="@drawable/sikra_parado_ojos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@id/titulo_view2"
         android:layout_marginTop="350dp"
