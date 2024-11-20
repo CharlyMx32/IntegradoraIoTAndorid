@@ -1,6 +1,6 @@
 package com.example.integradoraiot.models;
 
-public class RegisterRequest {
+public class Persona {
     private String email;
     private String apellido;
     private String sexo;
@@ -8,7 +8,7 @@ public class RegisterRequest {
     private String password;
     private String nombre;
 
-    public RegisterRequest(String email, String password, String nombre, String apellido, String sexo, String fechaNacimiento) {
+    public Persona(String email, String password, String nombre, String apellido, String sexo, String fechaNacimiento) {
         this.email = email;
         this.apellido = apellido;
         this.sexo = sexo;
