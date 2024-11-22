@@ -26,11 +26,31 @@ public class GameViewModel extends ViewModel {
 
     private void loadGames() {
         List<Game> gameList = new ArrayList<>();
-        gameList.add(new Game("Juego 1", R.drawable.sikra_parado));
-        gameList.add(new Game("Juego 2", R.drawable.sikra_parado_apuntando));
-        gameList.add(new Game("Juego 3", R.drawable.sikra_parado_ojos));
-        gameList.add(new Game("Juego 4", R.drawable.sikra_sentado));
-        gameList.add(new Game("Juego 5", R.drawable.sikra_bolita));
+        gameList.add(new Game(
+                "Juego 1",
+                R.drawable.sikra_parado,
+                "Este es un emocionante juego de aventuras donde exploras mundos desconocidos."
+        ));
+        gameList.add(new Game(
+                "Juego 2",
+                R.drawable.sikra_parado_apuntando,
+                "Pon a prueba tu puntería en este desafiante juego de disparos."
+        ));
+        gameList.add(new Game(
+                "Juego 3",
+                R.drawable.sikra_parado_ojos,
+                "Un juego de estrategia que te mantendrá pensando en cada movimiento."
+        ));
+        gameList.add(new Game(
+                "Juego 4",
+                R.drawable.sikra_sentado,
+                "Relájate con este juego de acertijos diseñado para disfrutar al máximo."
+        ));
+        gameList.add(new Game(
+                "Juego 5",
+                R.drawable.sikra_bolita,
+                "Un juego rápido de reflejos para los amantes de la adrenalina."
+        ));
         games.setValue(gameList);
     }
 

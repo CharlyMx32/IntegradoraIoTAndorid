@@ -1,42 +1,41 @@
 package com.example.integradoraiot.ui;
 
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.example.integradoraiot.R;
 
 public class SplashActivityItemsDescripciones extends AppCompatActivity {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.items_cards_juegos); // Cambia al diseño de tu actividad principal.
+        setContentView(R.layout.activity_descripciones);
 
-        // Encuentra el CardView y el TextView
-        CardView cardView = findViewById(R.id.cardView); // ID del CardView en el XML.
-        TextView textView = findViewById(R.id.tvGameName);
+        // Referencias a los elementos del layout
+        ImageView imgGameIcon = findViewById(R.id.imgGameIconDetail);
+        TextView tvGameName = findViewById(R.id.tvGameNameDetail);
+        TextView tvGameDescription = findViewById(R.id.tvGameDescription);
+        Button btnPlayGame = findViewById(R.id.btnPlayGame);
 
-        // Configura un OnClickListener para el CardView
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Acción al hacer clic en el CardView
-                Toast.makeText(SplashActivityItemsDescripciones.this, "CardView clickeado", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // Obtener los datos del Intent
+        String gameName = getIntent().getStringExtra("game_name");
+        int gameImage = getIntent().getIntExtra("game_icon", 0);
+        String gameDescription = getIntent().getStringExtra("game_description");
 
-        // Configura un OnClickListener para el TextView
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Acción al hacer clic en el TextView
-                Toast.makeText(SplashActivityItemsDescripciones.this, "TextView clickeado", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // Configurar los elementos con los datos recibidos
+        tvGameName.setText(gameName);
+        imgGameIcon.setImageResource(gameImage);
+        tvGameDescription.setText(gameDescription);
+
+        // Configurar el botón de jugar
+        btnPlayGame.setOnClickListener(v ->
+                Toast.makeText(this, "¡Jugando " + gameName + "!", Toast.LENGTH_SHORT).show()
+        );
     }
 }

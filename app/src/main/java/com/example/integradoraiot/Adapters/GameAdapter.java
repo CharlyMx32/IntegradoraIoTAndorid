@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.models.Game;
+import com.example.integradoraiot.ui.SplashActivityItemsDescripciones;
 
 import java.util.List;
 
@@ -38,9 +39,15 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.tvGameName.setText(game.getName());
         holder.imgGameIcon.setImageResource(game.getImageResource());
 
-        Log.d("GameAdapter", "Vinculando juego en la posición: " + position);
+        // Configurar clic en el CardView
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), SplashActivityItemsDescripciones.class);
+            intent.putExtra("game_name", game.getName());
+            intent.putExtra("game_icon", game.getImageResource());
+            intent.putExtra("game_description", game.getDescription()); // Agregar la descripción
+            v.getContext().startActivity(intent);
+        });
     }
-
 
     @Override
     public int getItemCount() {
