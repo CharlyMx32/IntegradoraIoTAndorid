@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.integradoraiot.models.Persona;
+import com.example.integradoraiot.models.RegisterRequest;
 import com.example.integradoraiot.repository.PersonaRepository;
 
 public class PersonaViewModel extends ViewModel {
@@ -25,9 +25,9 @@ public class PersonaViewModel extends ViewModel {
     }
 
     public void registerUser(String nombre, String apellido, String sexo, String fechaNacimiento, String correo, String contrasena) {
-        Persona persona = new Persona(correo, contrasena, nombre, apellido, sexo, fechaNacimiento);
+        RegisterRequest registerRequest = new RegisterRequest(correo, contrasena, nombre, apellido, sexo, fechaNacimiento);
 
-        personaRepository.registerUser(persona, new PersonaRepository.RegisterCallback() {
+        personaRepository.registerUser(registerRequest, new PersonaRepository.RegisterCallback() {
             @Override
             public void onSuccess() {
                 isSuccess.setValue(true);

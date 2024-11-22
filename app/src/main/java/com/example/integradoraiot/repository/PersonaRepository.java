@@ -1,6 +1,6 @@
 package com.example.integradoraiot.repository;
 
-import com.example.integradoraiot.models.Persona;
+import com.example.integradoraiot.models.RegisterRequest;
 import com.example.integradoraiot.models.RegisterResponse;
 import com.example.integradoraiot.network.ApiService;
 import com.example.integradoraiot.network.RetroFitClient;
@@ -21,8 +21,8 @@ public class PersonaRepository {
         void onError(String message);
     }
 
-    public void registerUser(Persona persona, RegisterCallback callback) {
-        Call<RegisterResponse> call = apiService.register(persona);
+    public void registerUser(RegisterRequest registerRequest, RegisterCallback callback) {
+        Call<RegisterResponse> call = apiService.register(registerRequest);
         call.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
