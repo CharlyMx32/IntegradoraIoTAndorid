@@ -1,4 +1,4 @@
-package com.example.integradoraiot.ui;
+package com.example.integradoraiot.fragmentos;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.integradoraiot.MainActivity;
 import com.example.integradoraiot.R;
 
-public class SplashActivityFrag3 extends Fragment {
+public class frag_frag3 extends Fragment {
 
     @Nullable
     @Override

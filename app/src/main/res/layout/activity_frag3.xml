@@ -58,7 +58,7 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="300dp"
-        android:src="@drawable/sikra_parado_ojos"
+        android:src="@drawable/sikra_sentado"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/imagen_zigzag"
         app:layout_constraintHorizontal_bias="0.012"

@@ -59,7 +59,7 @@
         android:src="@drawable/sikra_parado_ojos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="@id/titulo_view2"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="300dp"
         app:layout_constraintWidth_percent="0.5" />
 
     <TextView
@@ -87,6 +87,5 @@
         app:layout_constraintStart_toStartOf="@id/titulo_view2"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

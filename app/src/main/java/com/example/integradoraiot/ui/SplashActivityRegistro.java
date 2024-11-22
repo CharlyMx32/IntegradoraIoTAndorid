@@ -120,6 +120,10 @@ public class SplashActivityRegistro extends AppCompatActivity {
     private String formatDate(int year, int month, int day) {
         return String.format("%04d-%02d-%02d", year, month, day);
     }
+    private String formatDate(int year, int month, int day) {
+        return String.format("%04d-%02d-%02d", year, month, day);
+    }
+
 
 
 

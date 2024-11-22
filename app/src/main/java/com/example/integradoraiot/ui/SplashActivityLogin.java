@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.integradoraiot.R;
+import com.example.integradoraiot.fragmentos.frag_ventanas;
 
 public class SplashActivityLogin extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class SplashActivityLogin extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SplashActivityLogin.this, SplashActivityVentanas.class);
+                Intent intent = new Intent(SplashActivityLogin.this, frag_ventanas.class);
                 startActivity(intent);
                 finish();
             }
