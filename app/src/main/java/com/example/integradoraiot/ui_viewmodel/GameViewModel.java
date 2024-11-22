@@ -27,7 +27,6 @@ public class GameViewModel extends ViewModel {
     private void loadGames() {
         List<Game> gameList = new ArrayList<>();
         gameList.add(new Game("AAAAAAAAAAAAAAAAA", R.drawable.sikra_parado));
-        // Agrega más juegos...
         games.setValue(gameList);
         Log.d("GameViewModel", "Número de juegos cargados: " + gameList.size());
     }

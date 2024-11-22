@@ -35,7 +35,6 @@ public class frag_ventanas extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tabLayout);
 
-        // Lista de fragmentos para ViewPager2
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new frag1());
         fragmentList.add(new frag2());
