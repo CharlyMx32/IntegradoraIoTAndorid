@@ -1,39 +1,70 @@
 package com.example.integradoraiot.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.integradoraiot.R;
-import com.example.integradoraiot.fragmentos.frag_ventanas;
+import com.example.integradoraiot.ui_viewmodel.PersonaViewModel;
 
 public class SplashActivityLogin extends AppCompatActivity {
+
+    private PersonaViewModel personaViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_login);
 
+        personaViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
+
+        EditText emailEditText = findViewById(R.id.correo_edit_text);
+        EditText passwordEditText = findViewById(R.id.contrasena_edit_text);
         Button loginButton = findViewById(R.id.iniciar_sesion_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        loginButton.setOnClickListener(view -> {
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
+
+            if (!email.isEmpty() && !password.isEmpty()) {
+                personaViewModel.loginUser(email, password);
+            } else {
+                Toast.makeText(this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        personaViewModel.getLoginSuccess().observe(this, isSuccess -> {
+            if (isSuccess) {
                 Intent intent = new Intent(SplashActivityLogin.this, SplashActivityVentanas.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-        TextView registrarseText = findViewById(R.id.registro_text);
-        registrarseText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { //aqui iba SplashActivityRegistro
-                Intent intent = new Intent(SplashActivityLogin.this, SplashActivityRegistro.class);
-                startActivity(intent);
-            }
+        personaViewModel.getLoginError().observe(this, errorMessage -> {
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         });
     }
+
+    private void guardarToken(String token) {
+        SharedPreferences preferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("token", token);
+        editor.apply();
+    }
+
+    //destruir el token
+    private void eliminarToken() {
+        SharedPreferences preferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("token");
+        editor.apply();
+    }
+
 }
