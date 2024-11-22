@@ -18,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- ImageView occupying 30% of the CardView width -->
         <ImageView
             android:id="@+id/imgGameIcon"
             android:layout_width="match_parent"
@@ -26,12 +25,11 @@
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintHeight_percent="0.6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.3" />
+            app:layout_constraintWidth_percent="0.2" />
 
-        <!-- TextView occupying 70% of the CardView width -->
         <TextView
             android:id="@+id/tvGameName"
             android:layout_width="0dp"
