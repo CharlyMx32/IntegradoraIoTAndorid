@@ -1,23 +1,49 @@
 package com.example.integradoraiot.fragmentos;
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.integradoraiot.Adapters.GameAdapter;
 import com.example.integradoraiot.R;
+import com.example.integradoraiot.ui_viewmodel.GameViewModel;
+
+import java.util.ArrayList;
 
 public class frag_home extends Fragment {
 
-    public frag_home() {
-        // Required empty public constructor
+    private RecyclerView recyclerViewGames;
+    private GameAdapter adapter;
+    private GameViewModel viewModel;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_home, container, false);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_home, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Configura RecyclerView
+        recyclerViewGames = view.findViewById(R.id.recyclerViewGames);
+        recyclerViewGames.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        adapter = new GameAdapter(new ArrayList<>());
+        recyclerViewGames.setAdapter(adapter);
+
+        // Configura ViewModel
+        viewModel = new ViewModelProvider(this).get(GameViewModel.class);
+        viewModel.getGames().observe(getViewLifecycleOwner(), gameList -> {
+            adapter = new GameAdapter(gameList);
+            recyclerViewGames.setAdapter(adapter);
+        });
     }
 }
