@@ -1,35 +1,53 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_margin="8dp"
+    android:id="@+id/cardView"
+    android:layout_width="150dp"
+    android:layout_height="200dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="25dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp"
-    android:backgroundTint="@color/Burple">
+    android:backgroundTint="@color/Burple"
+    android:clickable="true"
+    android:focusable="true">
 
-    <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="8dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <!-- ImageView occupying 30% of the CardView width -->
         <ImageView
             android:id="@+id/imgGameIcon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:src="@drawable/ic_launcher_background"/>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3" />
 
+        <!-- TextView occupying 70% of the CardView width -->
         <TextView
             android:id="@+id/tvGameName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Game Name"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@android:color/white" />
-    </LinearLayout>
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgGameIcon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

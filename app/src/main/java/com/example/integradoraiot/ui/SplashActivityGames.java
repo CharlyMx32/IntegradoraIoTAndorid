@@ -2,6 +2,8 @@ package com.example.integradoraiot.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

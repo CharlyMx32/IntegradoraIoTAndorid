@@ -29,6 +29,7 @@
         <activity android:name=".ui.SplashActivityVentanas"/>
         <activity android:name=".ui.SplashActivityFrag3"/>
         <activity android:name=".ui.SplashActivityGracias"/>
+        <activity android:name=".ui.SplashActivityItemsDescripciones" />
     </application>
 
 </manifest>

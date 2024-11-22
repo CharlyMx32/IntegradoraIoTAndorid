@@ -23,6 +23,7 @@ public class frag_home extends Fragment {
     private GameAdapter adapter;
     private GameViewModel viewModel;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
