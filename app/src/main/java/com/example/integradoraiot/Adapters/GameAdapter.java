@@ -1,5 +1,6 @@
 package com.example.integradoraiot.Adapters;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         Game game = gameList.get(position);
         holder.tvGameName.setText(game.getName());
         holder.imgGameIcon.setImageResource(game.getImageResource());
+
         Log.d("GameAdapter", "Vinculando juego en la posición: " + position);
     }
 

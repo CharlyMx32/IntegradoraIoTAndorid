@@ -25,7 +25,7 @@ public class DescripcionesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Adaptador
-        final DescripcionAdapter adapter = new DescripcionAdapter();
+        final DescripcionAdapter adapter = new DescripcionAdapter(getContext());
         recyclerView.setAdapter(adapter);
 
         // ViewModel
@@ -34,6 +34,8 @@ public class DescripcionesFragment extends Fragment {
 
         // Llamar a la API
         descripcionViewModel.fetchDescripciones();
+
+
 
         return view;
     }

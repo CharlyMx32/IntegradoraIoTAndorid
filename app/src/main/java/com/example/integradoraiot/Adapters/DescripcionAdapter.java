@@ -1,5 +1,7 @@
 package com.example.integradoraiot.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.models.Descripcion;
+import com.example.integradoraiot.ui.DescripcionActivity; // Importa tu actividad de descripción
 
 public class DescripcionAdapter extends ListAdapter<Descripcion, DescripcionAdapter.DescripcionViewHolder> {
 
-    public DescripcionAdapter() {
+    private final Context context;
+
+    public DescripcionAdapter(Context context) {
         super(new DiffUtil.ItemCallback<Descripcion>() {
             @Override
             public boolean areItemsTheSame(@NonNull Descripcion oldItem, @NonNull Descripcion newItem) {
@@ -27,6 +32,7 @@ public class DescripcionAdapter extends ListAdapter<Descripcion, DescripcionAdap
                 return oldItem.equals(newItem);
             }
         });
+        this.context = context;
     }
 
     @NonNull
@@ -55,6 +61,14 @@ public class DescripcionAdapter extends ListAdapter<Descripcion, DescripcionAdap
         public void bind(Descripcion descripcion) {
             titulo.setText(descripcion.getTitulo());
             this.descripcion.setText(descripcion.getDescripcion());
+
+            // Al hacer clic en el ítem, se inicia la nueva actividad
+            itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(itemView.getContext(), DescripcionActivity.class);
+                // Puedes pasar datos a la actividad de descripción
+                intent.putExtra("descripcionId", descripcion.getId());
+                itemView.getContext().startActivity(intent);
+            });
         }
     }
 }
