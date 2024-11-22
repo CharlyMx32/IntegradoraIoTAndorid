@@ -62,4 +62,11 @@
         fomentamos el aprendizaje...
     </string>
 
+    <string name="registro">Registro exitoso</string>
+
+    <string name="gracias">
+        Se te enviara un correo para\n
+        activar tu cuenta, ¡Gracias por registrarte!
+    </string>
+
 </resources>

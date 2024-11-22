@@ -46,10 +46,9 @@ public class SplashActivityRegistro extends AppCompatActivity {
         registerViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
 
         registerViewModel.getIsSuccess().observe(this, isSuccess -> {
-            if (isSuccess) {
-                // Redirigir al login
-                // Código para redirigir al login
-            }
+            Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityGracias.class);
+            startActivity(intent);
+            finish();
         });
 
         registerViewModel.getErrorMessage().observe(this, error -> {
@@ -102,8 +101,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
                     year - 18,
                     month,
                     day
-
-
             );
 
             // Establecer límites para la fecha
@@ -112,10 +109,7 @@ public class SplashActivityRegistro extends AppCompatActivity {
 
             // Mostrar el diálogo
             datePickerDialog.show();
-
-
         });
-
     }
     private String formatDate(int year, int month, int day) {
         return String.format("%04d-%02d-%02d", year, month, day);
@@ -123,8 +117,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
     private String formatDate(int year, int month, int day) {
         return String.format("%04d-%02d-%02d", year, month, day);
     }
-
-
 
 
     // Configurar la acción de "Enter" para los EditText
