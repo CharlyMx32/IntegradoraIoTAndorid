@@ -1,12 +1,12 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="150dp"
+    android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp"
-    android:backgroundTint="@color/black">
+    android:backgroundTint="@color/Burple">
 
     <LinearLayout
         android:layout_width="150dp"
@@ -31,4 +31,5 @@
             android:gravity="center"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
