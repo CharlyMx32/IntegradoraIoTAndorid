@@ -24,9 +24,13 @@ public class SplashActivityLogin extends AppCompatActivity {
 
         personaViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
 
+
         EditText emailEditText = findViewById(R.id.correo_edit_text);
         EditText passwordEditText = findViewById(R.id.contrasena_edit_text);
         Button loginButton = findViewById(R.id.iniciar_sesion_button);
+
+        passwordEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
+
 
         loginButton.setOnClickListener(view -> {
             String email = emailEditText.getText().toString().trim();
