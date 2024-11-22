@@ -16,13 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.integradoraiot.R;
-import com.example.integradoraiot.ui_viewmodel.RegisterViewModel;
+import com.example.integradoraiot.ui_viewmodel.PersonaViewModel;
 
 import java.util.Calendar;
 
 public class SplashActivityRegistro extends AppCompatActivity {
 
-    private RegisterViewModel registerViewModel;
+    private PersonaViewModel registerViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class SplashActivityRegistro extends AppCompatActivity {
         // Configurar el comportamiento de las teclas "Enter"
         setupEnterKeyBehavior();
 
-        registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
+        registerViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
 
         registerViewModel.getIsSuccess().observe(this, isSuccess -> {
             if (isSuccess) {
@@ -116,16 +116,14 @@ public class SplashActivityRegistro extends AppCompatActivity {
 
         });
 
-
-
-
-
-
-
     }
     private String formatDate(int year, int month, int day) {
         return String.format("%04d-%02d-%02d", year, month, day);
     }
+    private String formatDate(int year, int month, int day) {
+        return String.format("%04d-%02d-%02d", year, month, day);
+    }
+
 
 
 

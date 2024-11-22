@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/view">
 
-    <!-- Fondo verde que ocupa toda la pantalla -->
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
