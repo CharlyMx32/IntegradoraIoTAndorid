@@ -26,9 +26,12 @@ public class GameViewModel extends ViewModel {
 
     private void loadGames() {
         List<Game> gameList = new ArrayList<>();
-        gameList.add(new Game("AAAAAAAAAAAAAAAAA", R.drawable.sikra_parado));
+        gameList.add(new Game("Juego 1", R.drawable.sikra_parado));
+        gameList.add(new Game("Juego 2", R.drawable.sikra_parado_apuntando));
+        gameList.add(new Game("Juego 3", R.drawable.sikra_parado_ojos));
+        gameList.add(new Game("Juego 4", R.drawable.sikra_sentado));
+        gameList.add(new Game("Juego 5", R.drawable.sikra_bolita));
         games.setValue(gameList);
-        Log.d("GameViewModel", "Número de juegos cargados: " + gameList.size());
     }
 
 }
