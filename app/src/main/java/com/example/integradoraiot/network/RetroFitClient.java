@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder;
 
 public class RetroFitClient {
 
-    private static final String BASE_URL = "https://1504-187-190-56-49.ngrok-free.app/api/"; // Cambia según tu API
+    private static final String BASE_URL = "https://63ec-2806-101e-e-6a7a-5095-8c7-a19b-dc1a.ngrok-free.app/api/"; // Cambia según tu API
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient() {
