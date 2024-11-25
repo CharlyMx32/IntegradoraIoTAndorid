@@ -21,5 +21,5 @@ public interface ApiService {
     Call<LoginResponse> login(@Body LoginRequest request);
 
     @GET("Juegos")
-    Call<List<Descripcion>> getDescripciones(); // Asegúrate de que List esté importado
+    Call<List<Descripcion>> getDescripciones();
 }
