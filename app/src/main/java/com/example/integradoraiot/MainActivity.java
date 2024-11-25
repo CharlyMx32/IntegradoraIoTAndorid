@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.integradoraiot.fragmentos.frag_estadisticas;
 import com.example.integradoraiot.fragmentos.frag_home;
-import com.example.integradoraiot.fragmentos.frag_perfil;
+import com.example.integradoraiot.fragmentos.frag_familia;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,11 +32,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_home:
                         selectedFragment = new frag_home();
                         break;
-                    case R.id.nav_estadisticas:
-                        selectedFragment = new frag_estadisticas();
-                        break;
-                    case R.id.nav_perfil:
-                        selectedFragment = new frag_perfil();
+                    case R.id.nav_familia:
+                        selectedFragment = new frag_familia();
                         break;
                 }
 
