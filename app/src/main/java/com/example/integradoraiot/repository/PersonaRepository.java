@@ -1,11 +1,14 @@
 package com.example.integradoraiot.repository;
 
+import com.example.integradoraiot.TokenInterceptor;
+import com.example.integradoraiot.TokenManager;
 import com.example.integradoraiot.models.RegisterRequest;
 import com.example.integradoraiot.models.RegisterResponse;
 import com.example.integradoraiot.models.LoginRequest;
 import com.example.integradoraiot.models.LoginResponse;
 import com.example.integradoraiot.network.ApiService;
 import com.example.integradoraiot.network.RetroFitClient;
+import android.content.Context;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,9 +17,12 @@ import retrofit2.Response;
 public class PersonaRepository {
     private final ApiService apiService;
 
-    public PersonaRepository() {
-        apiService = RetroFitClient.getClient().create(ApiService.class);
+    public PersonaRepository(Context context) {
+        TokenManager tokenManager = new TokenManager(context);
+        TokenInterceptor tokenInterceptor = new TokenInterceptor(tokenManager);
+        apiService = RetroFitClient.getClient(tokenInterceptor).create(ApiService.class);
     }
+
 
     public interface RegisterCallback {
         void onSuccess();
@@ -36,18 +42,23 @@ public class PersonaRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.onSuccess();
                 } else {
-                    callback.onError("Error al registrar");
+                    // Mejorar manejo de errores
+                    String errorMsg = "Error al registrar usuario. Código: " + response.code();
+                    if (response.errorBody() != null) {
+                        // Obtener detalles del cuerpo de error (si existe)
+                        errorMsg += " - " + response.errorBody().toString();
+                    }
+                    callback.onError(errorMsg);
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                callback.onError("Error: " + t.getMessage());
+                callback.onError("Fallo de red: " + t.getMessage());
             }
         });
     }
 
-    // Método para iniciar sesión
     public void loginUser(LoginRequest request, LoginCallback callback) {
         Call<LoginResponse> call = apiService.login(request);
         call.enqueue(new Callback<LoginResponse>() {
@@ -56,7 +67,12 @@ public class PersonaRepository {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.onSuccess(response.body().getToken());
                 } else {
-                    callback.onError("Error en el inicio de sesión: " + response.message());
+                    // Mejorar manejo de errores
+                    String errorMsg = "Error en el inicio de sesión: " + response.code();
+                    if (response.errorBody() != null) {
+                        errorMsg += " - " + response.errorBody().toString();
+                    }
+                    callback.onError(errorMsg);
                 }
             }
 
@@ -67,4 +83,3 @@ public class PersonaRepository {
         });
     }
 }
-
