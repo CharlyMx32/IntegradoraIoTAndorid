@@ -92,7 +92,7 @@
         app:layout_constraintTop_toBottomOf="@id/titulo_viewfrag_3"
         app:layout_constraintStart_toStartOf="@id/titulo_viewfrag_3"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
     <Button
         android:id="@+id/siguiente_Button"
@@ -103,6 +103,5 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintTop_toTopOf="@id/descripcion_view2"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

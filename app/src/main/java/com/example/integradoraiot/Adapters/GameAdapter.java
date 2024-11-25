@@ -26,7 +26,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     @NonNull
     @Override
     public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_cards_juegos, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_descripciones, parent, false);
         return new GameViewHolder(view);
     }
 
@@ -37,11 +37,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.nameTextView.setText(game.getName());
         holder.descriptionTextView.setText(game.getDescription());
 
-        Picasso.get()
-                .load(game.getImageUrl())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .error(R.drawable.ic_launcher_background)
-                .into(holder.imageView);
     }
 
     @Override
@@ -57,7 +52,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
             super(itemView);
             nameTextView = itemView.findViewById(R.id.tvGameNameDetail);
             descriptionTextView = itemView.findViewById(R.id.tvGameDescription);
-            imageView = itemView.findViewById(R.id.imgGameIconDetail);
         }
     }
 }

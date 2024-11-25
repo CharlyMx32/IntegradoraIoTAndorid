@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.ui_viewmodel.PersonaViewModel;
+import com.example.integradoraiot.ui_viewmodel.PersonaViewModelFactory;
 
 public class SplashActivityLogin extends AppCompatActivity {
 
@@ -43,6 +44,9 @@ public class SplashActivityLogin extends AppCompatActivity {
             }
         });
 
+        personaViewModel = new ViewModelProvider(this, new PersonaViewModelFactory(getApplication())).get(PersonaViewModel.class);
+
+        // Observa los cambios del LiveData
         personaViewModel.getLoginSuccess().observe(this, isSuccess -> {
             if (isSuccess) {
                 Intent intent = new Intent(SplashActivityLogin.this, SplashActivityVentanas.class);
@@ -50,6 +54,11 @@ public class SplashActivityLogin extends AppCompatActivity {
                 finish();
             }
         });
+
+        personaViewModel.getLoginError().observe(this, errorMessage -> {
+            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        });
+
 
         personaViewModel.getLoginError().observe(this, errorMessage -> {
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();

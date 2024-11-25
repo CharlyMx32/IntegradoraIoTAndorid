@@ -20,6 +20,6 @@ public interface ApiService {
     @POST("login")
     Call<LoginResponse> login(@Body LoginRequest request);
 
-    @GET("Juegos")
+    @GET("juegos")
     Call<List<Descripcion>> getDescripciones();
 }
