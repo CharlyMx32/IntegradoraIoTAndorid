@@ -4,11 +4,7 @@
         android:icon="@drawable/ic_home"
         android:title="Home" />
     <item
-        android:id="@+id/nav_estadisticas"
-        android:icon="@drawable/ic_estadisticas"
-        android:title="Estadisticas" />
-    <item
-        android:id="@+id/nav_perfil"
+        android:id="@+id/nav_familia"
         android:icon="@drawable/ic_perfil"
         android:title="Perfil" />
 </menu>

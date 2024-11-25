@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.integradoraiot.R;
 
-public class frag_perfil extends Fragment {
+public class frag_familia extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflar el diseño del fragmento
-        return inflater.inflate(R.layout.activity_perfil, container, false);
+        return inflater.inflate(R.layout.activity_familia, container, false);
     }
 }
