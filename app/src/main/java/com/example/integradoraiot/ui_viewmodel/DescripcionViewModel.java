@@ -1,10 +1,11 @@
 package com.example.integradoraiot.ui_viewmodel;
 
-import androidx.annotation.NonNull;
+import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.integradoraiot.TokenInterceptor;
 import com.example.integradoraiot.TokenManager;
 import com.example.integradoraiot.models.Descripcion;
 import com.example.integradoraiot.network.ApiService;
@@ -16,18 +17,17 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.example.integradoraiot.TokenInterceptor;
-import android.content.Context;
-
 
 public class DescripcionViewModel extends ViewModel {
-    private MutableLiveData<List<Descripcion>> descripciones;
-    private ApiService apiService;
+    private final MutableLiveData<List<Descripcion>> descripciones;
+    private final ApiService apiService;
 
     public DescripcionViewModel(Context context) {
+        descripciones = new MutableLiveData<>();
+
         TokenManager tokenManager = new TokenManager(context);
         TokenInterceptor tokenInterceptor = new TokenInterceptor(tokenManager);
-        descripciones = new MutableLiveData<>();
+
         apiService = RetroFitClient.getClient(tokenInterceptor).create(ApiService.class);
     }
 
@@ -53,4 +53,3 @@ public class DescripcionViewModel extends ViewModel {
         });
     }
 }
-
