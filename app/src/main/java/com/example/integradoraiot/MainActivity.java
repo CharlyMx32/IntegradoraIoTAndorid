@@ -1,8 +1,11 @@
 package com.example.integradoraiot;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.integradoraiot.fragmentos.KidsFragment;
 import com.example.integradoraiot.fragmentos.frag_home;
@@ -53,5 +56,12 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             bottomNavigationView.setSelectedItemId(R.id.nav_home);  // Selecciona el ítem 'Home' por defecto
         }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Acción de retroceso bloqueada temporalmente", Toast.LENGTH_SHORT).show();
+        //no se llama a super.onBackPressed() para bloquear la acción de retroceso
     }
 }

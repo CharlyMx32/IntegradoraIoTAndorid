@@ -1,8 +1,10 @@
 package com.example.integradoraiot.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -61,4 +63,13 @@ public class SplashActivityVentanas extends AppCompatActivity {
             }
         });
     }
+
+    //esto es para bloquear la acción de retroceso
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Acción de retroceso bloqueada temporalmente", Toast.LENGTH_SHORT).show();
+        //no se llama a super.onBackPressed() para bloquear la acción de retroceso
+    }
+
 }

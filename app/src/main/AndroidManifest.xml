@@ -30,6 +30,8 @@
         <activity android:name=".ui.SplashActivityFrag3"/>
         <activity android:name=".ui.SplashActivityGracias"/>
         <activity android:name=".ui.SplashActivityItemsDescripciones" />
+        <activity android:name=".ui.SplashJugar" />
+        <activity android:name=".ui.SplashSeleccionarNiñoActivity" />
     </application>
 
 </manifest>
