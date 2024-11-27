@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.integradoraiot.fragmentos.KidsFragment;
 import com.example.integradoraiot.fragmentos.frag_home;
-import com.example.integradoraiot.fragmentos.frag_familia;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new frag_home();
                         break;
                     case R.id.nav_familia:
-                        selectedFragment = new frag_familia();
+                        selectedFragment = new KidsFragment();
                         break;
                 }
 
