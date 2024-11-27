@@ -27,10 +27,8 @@ public class GameViewModel extends ViewModel {
     private final ApiService apiService;
 
     // Constructor
-    public GameViewModel(Context context) {
-        TokenManager tokenManager = new TokenManager(context);
-        TokenInterceptor tokenInterceptor = new TokenInterceptor(tokenManager);
-        apiService = RetroFitClient.getClient(tokenInterceptor).create(ApiService.class);
+    public GameViewModel() {
+        apiService = RetroFitClient.getClient().create(ApiService.class);
         fetchGamesFromApi();
     }
 
