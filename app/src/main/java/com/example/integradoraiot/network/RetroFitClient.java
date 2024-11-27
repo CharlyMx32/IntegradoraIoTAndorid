@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroFitClient {
 
-    private static final String BASE_URL = "https://5a12-2806-101e-e-6a7a-3077-c9dc-9af3-e6.ngrok-free.app/api/"; // URL de tu API
+    private static final String BASE_URL = "https://1549-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient(TokenInterceptor tokenInterceptor) {
@@ -31,7 +31,8 @@ public class RetroFitClient {
         }
         return retrofit;
 
-    }public static Retrofit getClient() {
+    }
+    public static Retrofit getClient() {
         if (retrofit == null) {
             Gson gson = new GsonBuilder()
                     .setLenient()

@@ -7,36 +7,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.models.Game;
-import com.squareup.picasso.Picasso;
+import com.example.integradoraiot.ui.SplashActivityGames;
 
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
 
-    private List<Game> gameList;
+    private final List<Game> gameList;
+    private final SplashActivityGames.OnGameClickListener listener;
 
-    public GameAdapter(List<Game> gameList) {
+    public GameAdapter(List<Game> gameList, SplashActivityGames.OnGameClickListener listener) {
         this.gameList = gameList;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_descripciones, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_cards_juegos, parent, false);
         return new GameViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull GameViewHolder holder, int position) {
         Game game = gameList.get(position);
-
-        holder.nameTextView.setText(game.getName());
-        holder.descriptionTextView.setText(game.getDescription());
-
+        if (game != null) {
+            holder.bind(game, listener);
+        }
     }
 
     @Override
@@ -45,13 +47,25 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     }
 
     static class GameViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, descriptionTextView;
+        TextView nameTextView;
         ImageView imageView;
+        CardView cardView;
 
         public GameViewHolder(@NonNull View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.tvGameNameDetail);
-            descriptionTextView = itemView.findViewById(R.id.tvGameDescription);
+            imageView = itemView.findViewById(R.id.imgGameIcon);
+            nameTextView = itemView.findViewById(R.id.tvGameName);
+            cardView = itemView.findViewById(R.id.cardView);
+        }
+
+        public void bind(Game game, SplashActivityGames.OnGameClickListener listener) {
+            nameTextView.setText(game.getName());
+            imageView.setImageResource(game.getImg());
+            cardView.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onGameClick(game);
+                }
+            });
         }
     }
 }
