@@ -30,8 +30,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_perfil"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_perfil" /> <!-- Puedes poner la imagen predeterminada aquí -->
 
             <!-- Información del tutor -->
             <LinearLayout
@@ -45,16 +45,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nombre del Tutor"
-                    android:textStyle="bold"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tutor_role"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tutor principal"
-                    android:textSize="14sp"
-                    android:textColor="@android:color/darker_gray" />
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -65,7 +65,8 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/card_tutor"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +77,7 @@
         android:id="@+id/recycler_children"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/divider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

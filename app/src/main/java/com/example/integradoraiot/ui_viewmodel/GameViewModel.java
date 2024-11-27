@@ -1,7 +1,5 @@
 package com.example.integradoraiot.ui_viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,7 +16,7 @@ public class GameViewModel extends ViewModel {
     private final MutableLiveData<List<Game>> games = new MutableLiveData<>();
 
     public GameViewModel() {
-        loadGames(); // Inicialización de juegos estáticos
+        loadGames();
     }
 
     public LiveData<List<Game>> getGames() {

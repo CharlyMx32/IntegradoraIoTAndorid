@@ -22,6 +22,12 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsAdapter.KidsViewHolder
         this.kidsList = kidsList;
     }
 
+    public void setKidsList(List<modelo_kids> kidsList) {
+        this.kidsList = kidsList;
+        notifyDataSetChanged();  // Notifica al RecyclerView que la lista ha cambiado
+    }
+
+
     @NonNull
     @Override
     public KidsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,19 +38,22 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsAdapter.KidsViewHolder
     @Override
     public void onBindViewHolder(@NonNull KidsViewHolder holder, int position) {
         modelo_kids modelo_kids = kidsList.get(position);
-
         holder.nameTextView.setText("Nombre: " + modelo_kids.getNombre());
         holder.lastNameTextView.setText("Apellido: " + modelo_kids.getApellido_paterno());
         holder.ageTextView.setText("Edad: " + modelo_kids.getEdad() + " años");
 
-        // Puedes configurar la imagen aquí si tienes una
-        // holder.profileImage.setImageResource(R.drawable.ic_some_image);
+        // Si tienes una foto de perfil, la configuras aquí
+        // if (modelo_kids.getFoto_perfil() != null) {
+        //     holder.profileImage.setImageResource(R.drawable.ic_some_image);
+        // }
     }
 
     @Override
     public int getItemCount() {
         return kidsList != null ? kidsList.size() : 0;
     }
+
+
 
     static class KidsViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, lastNameTextView, ageTextView;

@@ -11,6 +11,7 @@ import java.util.List; // Importa la clase List
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -22,4 +23,7 @@ public interface ApiService {
 
     @GET("juegos")
     Call<List<Descripcion>> getDescripciones();
+
+    @GET("tutores")
+    Call<ApiResponse> getKids(@Header("Authorization") String token);
 }
