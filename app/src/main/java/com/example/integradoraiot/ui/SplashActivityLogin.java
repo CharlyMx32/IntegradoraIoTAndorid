@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.ui_viewmodel.PersonaViewModel;
-import com.example.integradoraiot.ui_viewmodel.PersonaViewModelFactory;
+import com.example.integradoraiot.factory.PersonaViewModelFactory;
 
 public class SplashActivityLogin extends AppCompatActivity {
 

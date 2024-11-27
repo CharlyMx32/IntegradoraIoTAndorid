@@ -1,11 +1,12 @@
-package com.example.integradoraiot.ui_viewmodel;
+package com.example.integradoraiot.factory;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.integradoraiot.ui_viewmodel.PersonaViewModel;
 
 public class PersonaViewModelFactory implements ViewModelProvider.Factory {
     private final Application application;

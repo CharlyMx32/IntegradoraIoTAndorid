@@ -1,5 +1,6 @@
 package com.example.integradoraiot.fragmentos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradoraiot.Adapters.GameAdapter;
 import com.example.integradoraiot.R;
+import com.example.integradoraiot.models.Game;
+import com.example.integradoraiot.ui.SplashActivityItemsDescripciones;
 import com.example.integradoraiot.ui_viewmodel.GameViewModel;
 
 import java.util.ArrayList;
@@ -22,7 +25,6 @@ public class frag_home extends Fragment {
     private RecyclerView recyclerViewGames;
     private GameAdapter adapter;
     private GameViewModel viewModel;
-
 
     @Nullable
     @Override
@@ -37,14 +39,25 @@ public class frag_home extends Fragment {
         // Configura RecyclerView
         recyclerViewGames = view.findViewById(R.id.recyclerViewGames);
         recyclerViewGames.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        adapter = new GameAdapter(new ArrayList<>());
+
+        // Inicializa adaptador con un listener
+        adapter = new GameAdapter(new ArrayList<>(), this::onGameClick);
         recyclerViewGames.setAdapter(adapter);
 
         // Configura ViewModel
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
         viewModel.getGames().observe(getViewLifecycleOwner(), gameList -> {
-            adapter = new GameAdapter(gameList);
+            adapter = new GameAdapter(gameList, this::onGameClick);
             recyclerViewGames.setAdapter(adapter);
         });
+    }
+
+    // Método para manejar clics en los juegos
+    private void onGameClick(Game game) {
+        Intent intent = new Intent(getContext(), SplashActivityItemsDescripciones.class);
+        intent.putExtra("gameName", game.getName());
+        intent.putExtra("gameDescription", game.getDescription());
+        intent.putExtra("gameImage", game.getImg()); // Cambia según el tipo de dato
+        startActivity(intent);
     }
 }
