@@ -28,31 +28,25 @@ public class GameViewModel extends ViewModel {
     private void loadGames() {
         List<Game> gameList = new ArrayList<>();
         gameList.add(new Game(
-                "Juego 1",
-                R.drawable.sikra_parado,
-                "Este es un emocionante juego de aventuras donde exploras mundos desconocidos."
+                "Simon dice",
+                R.drawable.simon_dice,
+                "Un clásico juego de memoria y atención, donde debes seguir las secuencias de colores y sonidos que 'Simón' indica. ¡Cada ronda es más desafiante!"
         ));
         gameList.add(new Game(
-                "Juego 2",
-                R.drawable.sikra_parado_apuntando,
-                "Pon a prueba tu puntería en este desafiante juego de disparos."
+                "Cazador de colores",
+                R.drawable.cazador_colores,
+                "Desarrolla tu rapidez y precisión en este juego donde tendrás que identificar y tocar los colores correctos antes de que desaparezcan."
         ));
         gameList.add(new Game(
-                "Juego 3",
-                R.drawable.sikra_parado_ojos,
-                "Un juego de estrategia que te mantendrá pensando en cada movimiento."
+                "Luz verde, luz roja",
+                R.drawable.semaforo,
+                "Un emocionante juego de estrategia donde debes avanzar cuando la luz está verde, pero detenerte completamente en la roja. ¡Cuidado con moverte en el momento equivocado!"
         ));
         gameList.add(new Game(
-                "Juego 4",
-                R.drawable.sikra_sentado,
-                "Relájate con este juego de acertijos diseñado para disfrutar al máximo."
-        ));
-        gameList.add(new Game(
-                "Juego 5",
-                R.drawable.sikra_bolita,
-                "Un juego rápido de reflejos para los amantes de la adrenalina."
+                "Laberinto",
+                R.drawable.laberinto,
+                "Explora y resuelve intrincados laberintos, utilizando lógica y paciencia para encontrar la salida. ¡Perfecto para relajarte mientras desafías tu mente!"
         ));
         games.setValue(gameList);
     }
-
 }
