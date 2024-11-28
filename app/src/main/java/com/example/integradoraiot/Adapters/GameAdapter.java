@@ -60,7 +60,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         public void bind(Game game, SplashActivityGames.OnGameClickListener listener) {
             nameTextView.setText(game.getName());
-            imageView.setImageResource(game.getImg());
             cardView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onGameClick(game);

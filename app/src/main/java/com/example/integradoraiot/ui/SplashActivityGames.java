@@ -36,16 +36,17 @@ public class SplashActivityGames extends AppCompatActivity {
         adapter = new GameAdapter(new ArrayList<>(), game -> {
             Intent intent = new Intent(SplashActivityGames.this, SplashActivityItemsDescripciones.class);
             intent.putExtra("gameName", game.getName());
-            intent.putExtra("gameDescription", game.getDescription());
-            intent.putExtra("gameImage", game.getImg()); // Imagen o URL
+            intent.putExtra("gameDescription", game.getDescripcion());
             startActivity(intent);
         });
 
         recyclerViewGames.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
-        viewModel.getGames().observe(this, gameList -> adapter.notifyDataSetChanged());
+        viewModel.getGames().observe(this, gameList -> {
+        });
     }
+
 
 }
 

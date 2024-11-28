@@ -2,12 +2,12 @@ package com.example.integradoraiot.models;
 
 public class Game {
     private String nombre;
-    private int img;
+    private int id;
     private String descripcion;
 
-    public Game(String name, int img, String descripcion) {
+    public Game(String name, int id, String descripcion) {
         this.nombre = name;
-        this.img = img;
+        this.id = id;
         this.descripcion = descripcion;
     }
 
@@ -15,11 +15,11 @@ public class Game {
         return nombre;
     }
 
-    public int getImg() {
-        return img;
+    public int getId() {
+        return id;
     }
 
-    public String getDescription() {
+    public String getDescripcion() {
         return descripcion;
     }
 

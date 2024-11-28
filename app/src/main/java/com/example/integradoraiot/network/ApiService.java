@@ -1,6 +1,7 @@
 package com.example.integradoraiot.network;
 
 import com.example.integradoraiot.models.Descripcion;
+import com.example.integradoraiot.models.Game;
 import com.example.integradoraiot.models.LoginRequest;
 import com.example.integradoraiot.models.LoginResponse;
 import com.example.integradoraiot.models.RegisterRequest;
@@ -26,4 +27,7 @@ public interface ApiService {
 
     @GET("tutores")
     Call<ApiResponse> getKids(@Header("Authorization") String token);
+
+    @GET("obtenerJuegos")
+    Call<List<Game>> getGame();
 }
