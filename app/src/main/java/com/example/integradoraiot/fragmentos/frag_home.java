@@ -56,8 +56,7 @@ public class frag_home extends Fragment {
     private void onGameClick(Game game) {
         Intent intent = new Intent(getContext(), SplashActivityItemsDescripciones.class);
         intent.putExtra("gameName", game.getName());
-        intent.putExtra("gameDescription", game.getDescription());
-        intent.putExtra("gameImage", game.getImg()); // Cambia según el tipo de dato
+        intent.putExtra("gameDescription", game.getDescripcion());
         startActivity(intent);
     }
 }
