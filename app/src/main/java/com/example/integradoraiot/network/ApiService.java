@@ -1,11 +1,11 @@
 package com.example.integradoraiot.network;
 
 import com.example.integradoraiot.models.Descripcion;
-import com.example.integradoraiot.models.Game;
 import com.example.integradoraiot.models.LoginRequest;
 import com.example.integradoraiot.models.LoginResponse;
 import com.example.integradoraiot.models.RegisterRequest;
 import com.example.integradoraiot.models.RegisterResponse;
+import com.example.integradoraiot.models.KidRequest;
 
 import java.util.List; // Importa la clase List
 
@@ -28,6 +28,6 @@ public interface ApiService {
     @GET("tutores")
     Call<ApiResponse> getKids(@Header("Authorization") String token);
 
-    @GET("obtenerJuegos")
-    Call<List<Game>> getGame();
+    @POST("alta")
+    Call<ApiResponse> altaKid(@Header("Authorization") String token, @Body KidRequest request);
 }

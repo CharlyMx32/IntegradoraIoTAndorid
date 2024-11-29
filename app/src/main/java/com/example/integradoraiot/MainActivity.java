@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.integradoraiot.fragmentos.KidsFragment;
 import com.example.integradoraiot.fragmentos.frag_home;
+import com.example.integradoraiot.fragmentos.frag_kids;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_familia:
                         selectedFragment = new KidsFragment();
+                        break;
+                    case R.id.nav_niños:
+                        selectedFragment = new frag_kids();
                         break;
                 }
 

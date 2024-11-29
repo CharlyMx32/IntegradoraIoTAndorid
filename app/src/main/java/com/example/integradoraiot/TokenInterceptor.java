@@ -9,7 +9,8 @@ import okhttp3.Response;
 public class TokenInterceptor implements Interceptor {
     private final TokenManager tokenManager;
 
-    public TokenInterceptor(TokenManager tokenManager) {
+    public TokenInterceptor(TokenManager tokenManager)
+    {
         this.tokenManager = tokenManager;
     }
 

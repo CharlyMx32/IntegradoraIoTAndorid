@@ -80,4 +80,6 @@ public class SplashActivityLogin extends AppCompatActivity {
         editor.apply();
     }
 
+
+
 }

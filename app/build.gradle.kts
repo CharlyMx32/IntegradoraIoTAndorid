@@ -48,8 +48,6 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.auth0.android:jwtdecode:2.0.1")
 
-
-
     implementation ("androidx.recyclerview:recyclerview:1.3.1")
 
     //modelo vista vista-modelo
@@ -57,6 +55,8 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation ("androidx.databinding:databinding-runtime:8.1.0")
 
+    //decodificar json
+    implementation ("com.auth0.android:jwtdecode:2.0.0")
 
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")

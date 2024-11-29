@@ -24,6 +24,14 @@ public class ApiResponse {
         this.niños = niños;
     }
 
+    public String getStatus() {
+        return "¡Operación exitosa!";
+    }
+
+    public String getMessage() {
+        return "Operación NOOO exitosa";
+    }
+
     public static class Tutor {
         private int id_tutor;
         private int id_persona;

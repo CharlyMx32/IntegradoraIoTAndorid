@@ -53,6 +53,11 @@
         a empezar!
     </string>
 
+    <string name="registro_niños">
+        ¿Deseas registrar\n
+         otro niño?
+    </string>
+
     <string name="frag3_descrp">
         Juega y aprende ahrora mismo...
     </string>

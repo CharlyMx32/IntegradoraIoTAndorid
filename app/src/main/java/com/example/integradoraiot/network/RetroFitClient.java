@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroFitClient {
 
-    private static final String BASE_URL = "https://b25a-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
+    private static final String BASE_URL = "https://2567-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
     private static Retrofit retrofit = null;
 
     // Método único para obtener el cliente Retrofit con el TokenInterceptor
@@ -27,24 +27,6 @@ public class RetroFitClient {
                     .build();
 
             // Configuración de Retrofit con base URL, conversión JSON y cliente OkHttp con interceptor
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(client)
-                    .build();
-        }
-        return retrofit;
-    }
-
-    public static Retrofit getClientSinToken() {
-        if (retrofit == null) {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
-
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .build();
-
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(gson))
