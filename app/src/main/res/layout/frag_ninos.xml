@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Burple">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/sikra_sincuerpo_blanco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <TextView
+        android:id="@+id/bienvenido_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/registro_niños"
+        android:textColor="@color/black"
+        android:layout_marginTop="25dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/niño_nombre_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_morado"
+        android:hint="@string/Nombre"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/bienvenido_text"
+        app:layout_constraintTop_toBottomOf="@id/bienvenido_text" />
+
+    <EditText
+        android:id="@+id/niño_apellido_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_morado"
+        android:hint="@string/Apellido"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/niño_nombre_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/niño_nombre_edit_text" />
+
+
+    <EditText
+        android:id="@+id/niño_edad_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_morado"
+        android:hint="Edad"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/niño_apellido_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/niño_apellido_edit_text" />
+
+    <Spinner
+        android:id="@+id/sexo_spinner"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/input_morado"
+        android:minHeight="48dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:entries="@array/sexo_options"
+        android:padding="12dp"
+        app:layout_constraintStart_toStartOf="@+id/niño_edad_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/niño_edad_edit_text" />
+
+    <Button
+        android:id="@+id/listo_button"
+        style="@style/BotonBase"
+        android:layout_width="330dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/input_boton"
+        android:text="@string/Listo"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sexo_spinner"
+        app:layout_constraintVertical_bias="0.234" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
