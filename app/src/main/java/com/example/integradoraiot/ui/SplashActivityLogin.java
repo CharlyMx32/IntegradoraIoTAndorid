@@ -3,8 +3,10 @@ package com.example.integradoraiot.ui;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class SplashActivityLogin extends AppCompatActivity {
         EditText emailEditText = findViewById(R.id.correo_edit_text);
         EditText passwordEditText = findViewById(R.id.contrasena_edit_text);
         Button loginButton = findViewById(R.id.iniciar_sesion_button);
+        TextView olvideTextView = findViewById(R.id.olvide_text);
 
         passwordEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
 
@@ -42,6 +45,11 @@ public class SplashActivityLogin extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        olvideTextView.setOnClickListener(view -> {
+            Intent intent = new Intent(SplashActivityLogin.this, SplashActivityOlvide.class);
+            startActivity(intent);
         });
 
         personaViewModel = new ViewModelProvider(this, new PersonaViewModelFactory(getApplication())).get(PersonaViewModel.class);
@@ -79,7 +87,4 @@ public class SplashActivityLogin extends AppCompatActivity {
         editor.remove("token");
         editor.apply();
     }
-
-
-
 }

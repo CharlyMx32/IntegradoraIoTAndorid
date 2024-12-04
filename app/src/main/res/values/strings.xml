@@ -37,6 +37,11 @@
     </string-array>
     <string name="view1">¡Bienvenido</string>
     <string name="view2">a GAME!</string>
+    <string name="VamosA">
+        Vamos a recuperar\n
+        tu contraseña...</string>
+    <string name="Escribircorreo">Escribe tu correo para restablecer tu contraseña:</string>
+    <string name="Restablecer">Restablecer contraseña</string>
 
     <string name="frag2_titulo">
         Nuestro objetivo...
@@ -72,6 +77,11 @@
     <string name="gracias">
         Se te enviara un correo para\n
         activar tu cuenta, ¡Gracias por registrarte!
+    </string>
+
+    <string name="gracias1">
+        Se te enviara un correo para\n
+        restablecer tu contraseña, ¡Gracias!
     </string>
 
 </resources>
