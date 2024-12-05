@@ -49,21 +49,4 @@ public class RetroFitClient {
         }
         return retrofit;
     }
-    public static Retrofit getClientSinToken() {
-        if (retrofit == null) {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
-
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .build();
-
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(client)
-                    .build();
-        }
-        return retrofit;
-    }
 }

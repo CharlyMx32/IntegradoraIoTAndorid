@@ -1,5 +1,6 @@
 package com.example.integradoraiot.fragmentos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.example.integradoraiot.models.modelo_kids;
 import com.example.integradoraiot.network.ApiResponse;
 import com.example.integradoraiot.network.ApiService;
 import com.example.integradoraiot.network.RetroFitClient;
+import com.example.integradoraiot.ui.activityJuegos;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeleccionarKidsFragment extends Fragment {
+public class SeleccionarKidsFragment extends Fragment implements SeleccionarKidsAdapter.OnKidSelectedListener {
 
     private RecyclerView recyclerView;
     private SeleccionarKidsAdapter seleccionarKidsAdapter;
@@ -39,12 +41,11 @@ public class SeleccionarKidsFragment extends Fragment {
         // Inflamos el layout del fragmento
         View view = inflater.inflate(R.layout.activity_seleccionar_kids, container, false);
 
-        recyclerView = view.findViewById(R.id.recycler_children); // Cambia por el ID de tu RecyclerView
-        seleccionarKidsAdapter = new SeleccionarKidsAdapter(new ArrayList<>());
+        recyclerView = view.findViewById(R.id.recycler_children);
+        seleccionarKidsAdapter = new SeleccionarKidsAdapter(new ArrayList<>(), this); // Pasamos el listener
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(seleccionarKidsAdapter);
 
-        // Llamada a la API para obtener los datos
         fetchKidsData();
 
         return view;
@@ -81,5 +82,15 @@ public class SeleccionarKidsFragment extends Fragment {
     private String obtenerToken() {
         TokenManager tokenManager = new TokenManager(getContext());
         return tokenManager.getToken();
+    }
+
+    // Implementación del método de la interfaz OnKidSelectedListener
+    @Override
+    public void onKidSelected(modelo_kids kid) {
+        // Aquí puedes manejar lo que sucede cuando el niño es seleccionado
+        // Por ejemplo, puedes iniciar un nuevo activity y pasar los datos del niño
+        Intent intent = new Intent(getActivity(), activityJuegos.class);
+        intent.putExtra("id_kid", kid.getId_kid());
+        startActivity(intent);
     }
 }
