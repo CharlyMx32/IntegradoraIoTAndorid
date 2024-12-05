@@ -56,11 +56,11 @@
         android:layout_marginStart="32dp"
         android:text="@string/registro_niños"
         android:textColor="@color/black"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="65dp"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/perfil_txt" />
 
     <EditText
         android:id="@+id/niño_nombre_edit_text"

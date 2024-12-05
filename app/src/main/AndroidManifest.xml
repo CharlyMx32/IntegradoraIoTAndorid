@@ -36,6 +36,7 @@
         <activity android:name=".ui.SplashSeleccionarNiñoActivity" />
         <activity android:name=".ui.SplashActivityOlvide" />
         <activity android:name=".ui.SplashActivityRestablecido" />
+        <activity android:name=".ui.SplashActivityPerfil" />
     </application>
 
 </manifest>

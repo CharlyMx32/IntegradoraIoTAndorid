@@ -1,15 +1,14 @@
-package com.example.integradoraiot.fragmentos;
+package com.example.integradoraiot.ui;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.auth0.android.jwt.JWT;
 import com.example.integradoraiot.R;
@@ -24,15 +23,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class frag_perfil extends Fragment {
+public class SplashActivityPerfil extends AppCompatActivity {  // Cambié el nombre de la clase a SplashActivity
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.frag_perfil, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.frag_perfil); // Asegúrate de que este sea tu layout de splash
 
         // Obtener el token almacenado
-        TokenManager tokenManager = new TokenManager(getContext());
+        TokenManager tokenManager = new TokenManager(this);  // Usamos 'this' para obtener el contexto de la actividad
         String token = tokenManager.getToken();
 
         // Decodificar token para obtener el ID del usuario
@@ -44,13 +43,11 @@ public class frag_perfil extends Fragment {
 
         // Hacer la llamada a la API
         if (idPersona != null && token != null) {
-            fetchPerfilData(rootView, "Bearer " + token, idPersona);
+            fetchPerfilData(idPersona, "Bearer " + token);
         }
-
-        return rootView;
     }
 
-    private void fetchPerfilData(View rootView, String token, String idPersona) {
+    private void fetchPerfilData(String idPersona, String token) {
         ApiService apiService = RetroFitClient.getClientSinToken().create(ApiService.class);
 
         // Crear el objeto de solicitud
@@ -65,11 +62,11 @@ public class frag_perfil extends Fragment {
                     UsuarioResponse.Usuario usuario = response.body().getUsuario();
 
                     // Mostrar datos en los TextViews
-                    TextView emailTextView = rootView.findViewById(R.id.email_text);
-                    TextView nombreTextView = rootView.findViewById(R.id.nombre_text);
-                    TextView apellidoTextView = rootView.findViewById(R.id.apellido_text);
-                    TextView sexoTextView = rootView.findViewById(R.id.sexo_text);
-                    TextView fechaNacimientoTextView = rootView.findViewById(R.id.fecha_nacimiento_text);
+                    TextView emailTextView = findViewById(R.id.email_text);
+                    TextView nombreTextView = findViewById(R.id.nombre_text);
+                    TextView apellidoTextView = findViewById(R.id.apellido_text);
+                    TextView sexoTextView = findViewById(R.id.sexo_text);
+                    TextView fechaNacimientoTextView = findViewById(R.id.fecha_nacimiento_text);
 
                     emailTextView.setText(usuario.getEmail());
                     nombreTextView.setText(usuario.getNombre());
@@ -78,7 +75,7 @@ public class frag_perfil extends Fragment {
                     fechaNacimientoTextView.setText(usuario.getFecha_nacimiento());
 
                     // Mostrar la imagen de perfil (puedes usar Glide o Picasso)
-                    ImageView fotoImageView = rootView.findViewById(R.id.foto_image);
+                    ImageView fotoImageView = findViewById(R.id.foto_image);
                     Picasso.get()
                             .load(usuario.getFoto_perfil()) // URL de la imagen
                             .placeholder(R.drawable.ic_launcher_background) // Imagen mientras carga

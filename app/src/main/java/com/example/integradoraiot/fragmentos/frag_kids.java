@@ -1,5 +1,6 @@
 package com.example.integradoraiot.fragmentos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.example.integradoraiot.network.ApiResponse;
 import com.example.integradoraiot.network.ApiResponseKids;
 import com.example.integradoraiot.network.ApiService;
 import com.example.integradoraiot.network.RetroFitClient;
+import com.example.integradoraiot.ui.SplashActivityPerfil;
 
 import org.w3c.dom.Text;
 
@@ -75,7 +77,6 @@ public class frag_kids extends Fragment {
         EditText niñoEdad = rootView.findViewById(R.id.niño_edad_edit_text);
         Spinner sexoSpinner = rootView.findViewById(R.id.sexo_spinner);
         Button listoButton = rootView.findViewById(R.id.listo_button);
-        TextView perfilText = rootView.findViewById(R.id.perfil_txt);
 
         niñoNombre.setVisibility(View.GONE);
         niñoApellido.setVisibility(View.GONE);
@@ -113,12 +114,8 @@ public class frag_kids extends Fragment {
 
 
     private void navigateToPerfilFragment() {
-        // Realiza la transacción del fragmento de forma adecuada
-        Fragment perfilFragment = new frag_perfil();
-        requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, perfilFragment)  // Cambia el fragmento aquí
-                .addToBackStack(null)  // Esto asegura que se pueda volver al fragmento anterior
-                .commit();
+        Intent intent = new Intent(requireContext(), SplashActivityPerfil.class);
+        startActivity(intent);
     }
 
 
