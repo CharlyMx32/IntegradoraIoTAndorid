@@ -1,27 +1,33 @@
 package com.example.integradoraiot.models;
 
 public class Game {
+    private int id_juego;
     private String nombre;
-    private int id;
     private String descripcion;
+    private String imagen;
 
-    public Game(String name, int id, String descripcion) {
-        this.nombre = name;
-        this.id = id;
+    public Game(int id_juego, String nombre, String descripcion, String imagen) {
+        this.id_juego = id_juego;
+        this.nombre = nombre;
         this.descripcion = descripcion;
-    }
-
-    public String getName() {
-        return nombre;
+        this.imagen = imagen;
     }
 
     public int getId() {
-        return id;
+        return id_juego;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
 }
+
 

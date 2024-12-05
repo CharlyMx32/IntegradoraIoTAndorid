@@ -30,19 +30,33 @@ public interface ApiService {
     @GET("obtenerJuegos")
     Call<List<Descripcion>> getDescripciones();
 
+    @GET("obtenerJuegos")
+    Call<GameResponse> getGame();
+
     @GET("tutores")
     Call<ApiResponse> getKids(@Header("Authorization") String token);
 
     @POST("alta")
     Call<ApiResponse> altaKid(@Header("Authorization") String token, @Body KidRequest request);
-
-    @GET("obtenerJuegos")
-    Call<List<Game>> getGame();
-
+  
     @POST("restablecer")
     Call<RespuestaRestablecer> restablecerContrasena(@Body RestablecerRequest request);
 
     @POST("perfil")
     Call<UsuarioResponse> getPerfil(@Header("Authorization") String token, @Body UsuarioRequest request);
 
+    public class GameResponse {
+        private List<Game> juegos;
+
+        public List<Game> getJuegos() {
+            return juegos;
+        }
+
+        public void setJuegos(List<Game> juegos) {
+            this.juegos = juegos;
+        }
+    }
+
+
 }
+

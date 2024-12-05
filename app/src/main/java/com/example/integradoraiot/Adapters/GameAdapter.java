@@ -1,5 +1,6 @@
 package com.example.integradoraiot.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.models.Game;
 import com.example.integradoraiot.ui.SplashActivityGames;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,6 +48,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         return gameList != null ? gameList.size() : 0;
     }
 
+    public void updateData(List<Game> newGames) {
+        gameList.clear();
+        gameList.addAll(newGames);
+        notifyDataSetChanged();
+    }
+
     static class GameViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         ImageView imageView;
@@ -59,12 +67,22 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         }
 
         public void bind(Game game, SplashActivityGames.OnGameClickListener listener) {
-            nameTextView.setText(game.getName());
+            nameTextView.setText(game.getNombre());
+
+            Picasso.get()
+                    .load(game.getImagen())
+                    .placeholder(R.drawable.reloj)
+                    .error(R.drawable.ic_launcher_background)
+                    .into(imageView);
+
+
             cardView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onGameClick(game);
                 }
             });
         }
+
+
     }
 }

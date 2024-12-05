@@ -55,7 +55,7 @@ public class frag_home extends Fragment {
     // Método para manejar clics en los juegos
     private void onGameClick(Game game) {
         Intent intent = new Intent(getContext(), SplashActivityItemsDescripciones.class);
-        intent.putExtra("gameName", game.getName());
+        intent.putExtra("gameName", game.getNombre());
         intent.putExtra("gameDescription", game.getDescripcion());
         startActivity(intent);
     }

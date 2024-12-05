@@ -22,22 +22,23 @@ public class GameRepository {
     public LiveData<List<Game>> getGames() {
         MutableLiveData<List<Game>> data = new MutableLiveData<>();
 
-        apiService.getGame().enqueue(new Callback<List<Game>>() {
+        apiService.getGame().enqueue(new Callback<ApiService.GameResponse>() {
             @Override
-            public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
+            public void onResponse(Call<ApiService.GameResponse> call, Response<ApiService.GameResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    data.setValue(response.body());
+                    data.setValue(response.body().getJuegos());
                 } else {
                     data.setValue(null);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Game>> call, Throwable t) {
+            public void onFailure(Call<ApiService.GameResponse> call, Throwable t) {
                 data.setValue(null);
             }
         });
 
         return data;
     }
+
 }
