@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,8 @@ import com.example.integradoraiot.network.ApiResponse;
 import com.example.integradoraiot.network.ApiResponseKids;
 import com.example.integradoraiot.network.ApiService;
 import com.example.integradoraiot.network.RetroFitClient;
+
+import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -65,11 +68,38 @@ public class frag_kids extends Fragment {
     }
 
     private void setupForm(View rootView) {
+        TextView bienvenidoText = rootView.findViewById(R.id.bienvenido_text);
+        TextView perfilTxt = rootView.findViewById(R.id.perfil_txt);
         EditText niñoNombre = rootView.findViewById(R.id.niño_nombre_edit_text);
         EditText niñoApellido = rootView.findViewById(R.id.niño_apellido_edit_text);
         EditText niñoEdad = rootView.findViewById(R.id.niño_edad_edit_text);
         Spinner sexoSpinner = rootView.findViewById(R.id.sexo_spinner);
         Button listoButton = rootView.findViewById(R.id.listo_button);
+        TextView perfilText = rootView.findViewById(R.id.perfil_txt);
+
+        niñoNombre.setVisibility(View.GONE);
+        niñoApellido.setVisibility(View.GONE);
+        niñoEdad.setVisibility(View.GONE);
+        sexoSpinner.setVisibility(View.GONE);
+        listoButton.setVisibility(View.GONE);
+
+        bienvenidoText.setOnClickListener(v -> {
+            if (niñoNombre.getVisibility() == View.VISIBLE) {
+                niñoNombre.setVisibility(View.GONE);
+                niñoApellido.setVisibility(View.GONE);
+                niñoEdad.setVisibility(View.GONE);
+                sexoSpinner.setVisibility(View.GONE);
+                listoButton.setVisibility(View.GONE);
+            } else {
+                niñoNombre.setVisibility(View.VISIBLE);
+                niñoApellido.setVisibility(View.VISIBLE);
+                niñoEdad.setVisibility(View.VISIBLE);
+                sexoSpinner.setVisibility(View.VISIBLE);
+                listoButton.setVisibility(View.VISIBLE);
+            }
+        });
+
+        perfilTxt.setOnClickListener(v -> navigateToPerfilFragment());
 
         listoButton.setOnClickListener(v -> {
             String nombre_kid = niñoNombre.getText().toString();
@@ -80,7 +110,18 @@ public class frag_kids extends Fragment {
             registerChild(nombre_kid, apellido_paterno_kid, edad_kid, genero_kid);
         });
     }
-    
+
+
+    private void navigateToPerfilFragment() {
+        // Realiza la transacción del fragmento de forma adecuada
+        Fragment perfilFragment = new frag_perfil();
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, perfilFragment)  // Cambia el fragmento aquí
+                .addToBackStack(null)  // Esto asegura que se pueda volver al fragmento anterior
+                .commit();
+    }
+
+
     private void registerChild(String nombre_kid, String apellido_paterno_kid, int edad_kid, String genero_kid) {
         // Crear el objeto KidRequest con los datos necesarios
         KidRequest kidRequest = new KidRequest(idPersona, nombre_kid, apellido_paterno_kid, edad_kid, genero_kid);

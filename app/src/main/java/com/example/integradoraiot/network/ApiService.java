@@ -9,6 +9,8 @@ import com.example.integradoraiot.models.RegisterResponse;
 import com.example.integradoraiot.models.RespuestaRestablecer;
 import com.example.integradoraiot.models.RestablecerRequest;
 import com.example.integradoraiot.models.KidRequest;
+import com.example.integradoraiot.models.UsuarioRequest;
+import com.example.integradoraiot.models.UsuarioResponse;
 
 import java.util.List; // Importa la clase List
 
@@ -39,4 +41,8 @@ public interface ApiService {
 
     @POST("restablecer")
     Call<RespuestaRestablecer> restablecerContrasena(@Body RestablecerRequest request);
+
+    @POST("perfil")
+    Call<UsuarioResponse> getPerfil(@Header("Authorization") String token, @Body UsuarioRequest request);
+
 }
