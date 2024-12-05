@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.fragmentos.KidsFragment;
 import com.example.integradoraiot.fragmentos.SeleccionarKidsFragment;
+import com.squareup.picasso.Picasso;
 
 public class SplashActivityItemsDescripciones extends AppCompatActivity {
 
@@ -21,32 +22,32 @@ public class SplashActivityItemsDescripciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripciones);
 
-        ImageView gameImage = findViewById(R.id.imgGameIconDetail);
+        ImageView gameImage = findViewById(R.id.imgGameIcon);
         TextView gameName = findViewById(R.id.tvGameNameDetail);
         TextView gameDescription = findViewById(R.id.tvGameDescription);
 
-        // Recuperar datos del Intent
         String name = getIntent().getStringExtra("gameName");
         String description = getIntent().getStringExtra("gameDescription");
-        int imageResource = getIntent().getIntExtra("gameImage", 0);
+        String imageUrl = getIntent().getStringExtra("gameImage"); // Cambia a String
 
-        // Asignar valores a los elementos de la vista
         gameName.setText(name);
         gameDescription.setText(description);
-        gameImage.setImageResource(imageResource); // O usa Glide si es una URL
+
+        Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.reloj) // Imagen de carga
+                .error(R.drawable.ic_launcher_background) // Imagen de error
+                .into(gameImage); // ImageView objetivo
 
         Button btnPlayGame = findViewById(R.id.btnPlayGame);
         CardView cardFragmentContainer = findViewById(R.id.card_fragment_container);
 
         btnPlayGame.setOnClickListener(v -> {
-            // Mostrar el contenedor como una tarjeta
             cardFragmentContainer.setVisibility(View.VISIBLE);
 
-            // Opcional: Cargar un fragmento en el contenedor
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new SeleccionarKidsFragment())
                     .commit();
         });
-
     }
 }
