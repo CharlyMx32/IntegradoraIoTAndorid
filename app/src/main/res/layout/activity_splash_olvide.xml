@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_login">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/sikra_sincuerpo_morado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <TextView
+        android:id="@+id/bienvenido2_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/VamosA"
+        android:textColor="@color/Burple"
+        android:textStyle="bold"
+        android:textSize="31sp"
+        app:layout_constraintStart_toStartOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/imageView"
+        android:layout_marginTop="230dp" />
+
+    <TextView
+        android:id="@+id/escribe_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Escribircorreo"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@id/bienvenido2_text"
+        app:layout_constraintTop_toBottomOf="@id/bienvenido2_text"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/email_edit_text"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/input_blanco"
+        android:hint="@string/Correo"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textColor="#333333"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/escribe_text"
+        app:layout_constraintTop_toBottomOf="@id/escribe_text" />
+
+
+    <Button
+        android:id="@+id/iniciar_sesion_button"
+        android:layout_width="330dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/Bink"
+        android:text="@string/Restablecer"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

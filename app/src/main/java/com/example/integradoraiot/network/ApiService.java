@@ -6,7 +6,11 @@ import com.example.integradoraiot.models.LoginRequest;
 import com.example.integradoraiot.models.LoginResponse;
 import com.example.integradoraiot.models.RegisterRequest;
 import com.example.integradoraiot.models.RegisterResponse;
+import com.example.integradoraiot.models.RespuestaRestablecer;
+import com.example.integradoraiot.models.RestablecerRequest;
 import com.example.integradoraiot.models.KidRequest;
+import com.example.integradoraiot.models.UsuarioRequest;
+import com.example.integradoraiot.models.UsuarioResponse;
 
 import java.util.List; // Importa la clase List
 
@@ -34,6 +38,12 @@ public interface ApiService {
 
     @POST("alta")
     Call<ApiResponse> altaKid(@Header("Authorization") String token, @Body KidRequest request);
+  
+    @POST("restablecer")
+    Call<RespuestaRestablecer> restablecerContrasena(@Body RestablecerRequest request);
+
+    @POST("perfil")
+    Call<UsuarioResponse> getPerfil(@Header("Authorization") String token, @Body UsuarioRequest request);
 
     public class GameResponse {
         private List<Game> juegos;
