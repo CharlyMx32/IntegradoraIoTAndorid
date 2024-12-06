@@ -62,6 +62,7 @@ public class PersonaViewModel extends AndroidViewModel {
         });
     }
 
+    // Método de login de usuario
     public void loginUser(String email, String password) {
         LoginRequest request = new LoginRequest(email, password);
         personaRepository.loginUser(request, new PersonaRepository.LoginCallback() {
@@ -78,12 +79,15 @@ public class PersonaViewModel extends AndroidViewModel {
         });
     }
 
+    // Guardar el token usando TokenManager
     private void guardarToken(String token) {
         tokenManager.saveToken(token); // Usar TokenManager para guardar el token
     }
 
-    public String obtenerToken() {
+    // Obtener el token desde TokenManager
+    public String getToken() {
         return tokenManager.getToken(); // Recuperar el token si es necesario
     }
+
 }
 

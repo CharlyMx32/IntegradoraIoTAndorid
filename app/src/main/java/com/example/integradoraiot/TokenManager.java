@@ -19,5 +19,11 @@ public class TokenManager {
     public String getToken() {
         return sharedPreferences.getString(TOKEN_KEY, null);
     }
+
+    // Método para eliminar el token
+    public void removeToken() {
+        sharedPreferences.edit().remove(TOKEN_KEY).apply();
+    }
 }
+
 
