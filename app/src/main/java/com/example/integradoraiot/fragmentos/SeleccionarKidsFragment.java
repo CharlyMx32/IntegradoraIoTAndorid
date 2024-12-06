@@ -2,6 +2,7 @@ package com.example.integradoraiot.fragmentos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,17 +36,27 @@ public class SeleccionarKidsFragment extends Fragment implements SeleccionarKids
 
     private RecyclerView recyclerView;
     private SeleccionarKidsAdapter seleccionarKidsAdapter;
+    private String gameName;  // Variable para almacenar el gameName
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflamos el layout del fragmento
         View view = inflater.inflate(R.layout.activity_seleccionar_kids, container, false);
 
+        // Obtén el Bundle que se pasó desde la actividad
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            gameName = arguments.getString("gameName");  // Obtén el gameName
+            Log.d("GameName", gameName);  // Imprime gameName para depuración
+        }
+
+        // Configura el RecyclerView
         recyclerView = view.findViewById(R.id.recycler_children);
-        seleccionarKidsAdapter = new SeleccionarKidsAdapter(new ArrayList<>(), this); // Pasamos el listener
+        seleccionarKidsAdapter = new SeleccionarKidsAdapter(new ArrayList<>(), this);  // Pasamos el listener
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(seleccionarKidsAdapter);
 
+        // Obtén los datos de los niños
         fetchKidsData();
 
         return view;
@@ -90,7 +101,12 @@ public class SeleccionarKidsFragment extends Fragment implements SeleccionarKids
         // Aquí puedes manejar lo que sucede cuando el niño es seleccionado
         // Por ejemplo, puedes iniciar un nuevo activity y pasar los datos del niño
         Intent intent = new Intent(getActivity(), activityJuegos.class);
+        intent.putExtra("kid_name", kid.getNombre());
+        intent.putExtra("kid_lastname", kid.getApellido_paterno());
+        intent.putExtra("kid_age", kid.getEdad());
         intent.putExtra("id_kid", kid.getId_kid());
+        intent.putExtra("gameName", gameName);  // Pasar el gameName al activityJuegos
+
         startActivity(intent);
     }
 }

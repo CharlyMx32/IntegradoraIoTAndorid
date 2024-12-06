@@ -3,9 +3,6 @@ package com.example.integradoraiot;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 public class TokenManager {
     private static final String PREF_NAME = "AuthPreferences";
     private static final String TOKEN_KEY = "AuthToken";

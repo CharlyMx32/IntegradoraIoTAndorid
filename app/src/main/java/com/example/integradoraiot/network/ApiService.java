@@ -1,5 +1,7 @@
 package com.example.integradoraiot.network;
 
+
+import java.util.HashMap;
 import com.example.integradoraiot.models.Descripcion;
 import com.example.integradoraiot.models.Game;
 import com.example.integradoraiot.models.LoginRequest;
@@ -57,6 +59,8 @@ public interface ApiService {
         }
     }
 
+    @POST("iniciar")
+    Call<ApiResponse> enviarDatosJuego(@Header("Authorization") String token, @Body HashMap<String, String> datos);
 
 }
 

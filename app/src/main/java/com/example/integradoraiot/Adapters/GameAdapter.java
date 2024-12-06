@@ -82,7 +82,5 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
                 }
             });
         }
-
-
     }
 }

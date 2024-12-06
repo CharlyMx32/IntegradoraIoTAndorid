@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,12 +40,10 @@ public class SplashActivityGames extends AppCompatActivity {
             intent.putExtra("gameImage", game.getImagen());
             intent.putExtra("gameName", game.getNombre());
             intent.putExtra("gameDescription", game.getDescripcion());
+            intent.putExtra("gameId", game.getId_juego());
             startActivity(intent);
         });
-
         recyclerViewGames.setAdapter(adapter);
-
-
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
         viewModel.getGames().observe(this, gameList -> {
             if (gameList != null) {
