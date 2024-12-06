@@ -18,16 +18,15 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
+    private boolean isBackPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Configura el BottomNavigationView
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Cambiar a setOnItemSelectedListener (más moderno)
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
-                // Reemplaza el fragmento según el ícono seleccionado
                 if (selectedFragment != null) {
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.main, selectedFragment)
@@ -56,16 +54,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Establece el fragmento inicial (Home)
         if (savedInstanceState == null) {
-            bottomNavigationView.setSelectedItemId(R.id.nav_home);  // Selecciona el ítem 'Home' por defecto
+            bottomNavigationView.setSelectedItemId(R.id.nav_home);
         }
     }
 
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "Acción de retroceso bloqueada temporalmente", Toast.LENGTH_SHORT).show();
-        //no se llama a super.onBackPressed() para bloquear la acción de retroceso
+        if (isBackPressedOnce) {
+            super.onBackPressed();
+            finishAffinity();
+            return;
+        }
+
+        this.isBackPressedOnce = true;
+        Toast.makeText(this, "Presiona atrás nuevamente para salir", Toast.LENGTH_SHORT).show();
+
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        }, 2000); // 2 segundos
     }
 }

@@ -1,5 +1,7 @@
 package com.example.integradoraiot.ui;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,21 +14,35 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.integradoraiot.MainActivity;
 import com.example.integradoraiot.R;
+import com.example.integradoraiot.TokenManager;
 import com.example.integradoraiot.ui_viewmodel.PersonaViewModel;
 import com.example.integradoraiot.factory.PersonaViewModelFactory;
 
 public class SplashActivityLogin extends AppCompatActivity {
 
     private PersonaViewModel personaViewModel;
+    private String token;
+    private TokenManager tokenManager;
+    private boolean isBackPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_login);
 
-        personaViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
+        tokenManager = new TokenManager(this);
 
+        String token = tokenManager.getToken();
+        if (token != null) {
+            Intent intent = new Intent(SplashActivityLogin.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        personaViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
 
         EditText emailEditText = findViewById(R.id.correo_edit_text);
         EditText passwordEditText = findViewById(R.id.contrasena_edit_text);
@@ -34,7 +50,6 @@ public class SplashActivityLogin extends AppCompatActivity {
         TextView olvideTextView = findViewById(R.id.olvide_text);
 
         passwordEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
-
 
         loginButton.setOnClickListener(view -> {
             String email = emailEditText.getText().toString().trim();
@@ -54,7 +69,6 @@ public class SplashActivityLogin extends AppCompatActivity {
 
         personaViewModel = new ViewModelProvider(this, new PersonaViewModelFactory(getApplication())).get(PersonaViewModel.class);
 
-        // Observa los cambios del LiveData
         personaViewModel.getLoginSuccess().observe(this, isSuccess -> {
             if (isSuccess) {
                 Intent intent = new Intent(SplashActivityLogin.this, SplashActivityVentanas.class);
@@ -66,25 +80,25 @@ public class SplashActivityLogin extends AppCompatActivity {
         personaViewModel.getLoginError().observe(this, errorMessage -> {
             Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         });
-
-
-        personaViewModel.getLoginError().observe(this, errorMessage -> {
-            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
-        });
     }
 
-    private void guardarToken(String token) {
-        SharedPreferences preferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("token", token);
-        editor.apply();
-    }
+    @Override
+    public void onBackPressed() {
+        if (isBackPressedOnce) {
+            super.onBackPressed();
+            finishAffinity();
+            return;
+        }
 
-    //destruir el token
-    private void eliminarToken() {
-        SharedPreferences preferences = getSharedPreferences("MisPreferencias", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.remove("token");
-        editor.apply();
+        this.isBackPressedOnce = true;
+        Toast.makeText(this, "Presiona atrás nuevamente para salir", Toast.LENGTH_SHORT).show();
+
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        }, 2000); // 2 segundos
     }
 }
+

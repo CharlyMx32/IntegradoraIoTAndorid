@@ -1,10 +1,9 @@
 package com.example.integradoraiot.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,15 +22,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SplashActivityPerfil extends AppCompatActivity {  // Cambié el nombre de la clase a SplashActivity
+public class SplashActivityPerfil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.frag_perfil); // Asegúrate de que este sea tu layout de splash
+        setContentView(R.layout.frag_perfil);
 
         // Obtener el token almacenado
-        TokenManager tokenManager = new TokenManager(this);  // Usamos 'this' para obtener el contexto de la actividad
+        TokenManager tokenManager = new TokenManager(this);
         String token = tokenManager.getToken();
 
         // Decodificar token para obtener el ID del usuario
@@ -45,6 +44,23 @@ public class SplashActivityPerfil extends AppCompatActivity {  // Cambié el nom
         if (idPersona != null && token != null) {
             fetchPerfilData(idPersona, "Bearer " + token);
         }
+
+        // Configurar el botón de logout
+        Button logoutButton = findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Eliminar el token
+                tokenManager.removeToken();
+
+                // Redirigir a SplashActivityLogin
+                Intent intent = new Intent(SplashActivityPerfil.this, SplashActivityLogin.class);
+                startActivity(intent);
+
+                // Cerrar la actividad actual (opcional)
+                finish();
+            }
+        });
     }
 
     private void fetchPerfilData(String idPersona, String token) {
@@ -74,14 +90,13 @@ public class SplashActivityPerfil extends AppCompatActivity {  // Cambié el nom
                     sexoTextView.setText(usuario.getSexo());
                     fechaNacimientoTextView.setText(usuario.getFecha_nacimiento());
 
-                    // Mostrar la imagen de perfil (puedes usar Glide o Picasso)
+                    // Mostrar la imagen de perfil
                     ImageView fotoImageView = findViewById(R.id.foto_image);
                     Picasso.get()
                             .load(usuario.getFoto_perfil()) // URL de la imagen
                             .placeholder(R.drawable.ic_launcher_background) // Imagen mientras carga
                             .error(R.drawable.ic_launcher_foreground) // Imagen en caso de error
                             .into(fotoImageView); // ImageView destino
-
                 } else {
                     // Manejar error en la respuesta
                 }

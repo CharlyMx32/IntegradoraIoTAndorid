@@ -22,7 +22,6 @@ public class SplashActivityItemsDescripciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripciones);
 
-        ImageView gameImage = findViewById(R.id.imgGameIcon);
         TextView gameName = findViewById(R.id.tvGameNameDetail);
         TextView gameDescription = findViewById(R.id.tvGameDescription);
 
@@ -32,12 +31,6 @@ public class SplashActivityItemsDescripciones extends AppCompatActivity {
 
         gameName.setText(name);
         gameDescription.setText(description);
-
-        Picasso.get()
-                .load(imageUrl)
-                .placeholder(R.drawable.reloj) // Imagen de carga
-                .error(R.drawable.ic_launcher_background) // Imagen de error
-                .into(gameImage); // ImageView objetivo
 
         Button btnPlayGame = findViewById(R.id.btnPlayGame);
         CardView cardFragmentContainer = findViewById(R.id.card_fragment_container);

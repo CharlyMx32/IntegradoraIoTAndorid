@@ -65,25 +65,36 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="50dp"
         android:layout_marginTop="20dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintTop_toBottomOf="@id/card_tutor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Burple"
+        android:text="Niños"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+
     <!-- RecyclerView para los niños -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_children"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        android:paddingBottom="56dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/divider"
+        android:paddingBottom="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

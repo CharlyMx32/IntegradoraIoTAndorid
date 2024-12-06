@@ -20,10 +20,9 @@ public class SplashActivityFrag3 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Infla el layout del fragmento
+
         View view = inflater.inflate(R.layout.activity_frag3, container, false);
 
-        // Encuentra el botón usando 'view.findViewById'
         Button siguienteButton = view.findViewById(R.id.siguiente_Button);
 
         siguienteButton.setOnClickListener(v -> {
