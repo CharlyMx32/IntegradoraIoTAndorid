@@ -52,6 +52,8 @@ public class activityJuegos extends AppCompatActivity {
         int kidAge = intent.getIntExtra("kid_age", 0);
         String gameName = intent.getStringExtra("gameName");
         animationView.setVisibility(View.VISIBLE);
+        TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
+        nameTextView.setVisibility(View.GONE);
         handler = new Handler();
 
         handler.postDelayed(changeColorRunnable, 500);
@@ -76,6 +78,8 @@ public class activityJuegos extends AppCompatActivity {
         String token = "Bearer " + obtenerToken();
         TokenInterceptor tokenInterceptor = new TokenInterceptor(tokenManager);
         ApiService apiService = RetroFitClient.getClient(tokenInterceptor).create(ApiService.class);
+
+
 
         Call<ApiResponse> call = apiService.enviarDatosJuego(token, datosJuego);
         call.enqueue(new Callback<ApiResponse>() {
