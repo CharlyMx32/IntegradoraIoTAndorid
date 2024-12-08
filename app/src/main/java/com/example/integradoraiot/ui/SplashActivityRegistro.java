@@ -29,7 +29,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        // Inicializar los campos de texto
         EditText nombreEditText = findViewById(R.id.nombre_edit_text);
         EditText apellidoEditText = findViewById(R.id.apellido_edit_text);
         EditText correoEditText = findViewById(R.id.correo_edit_text);
@@ -40,7 +39,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
 
         contrasenaEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
 
-        // Configurar el comportamiento de las teclas "Enter"
         setupEnterKeyBehavior();
 
         registerViewModel = new ViewModelProvider(this).get(PersonaViewModel.class);
@@ -73,7 +71,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
             registerViewModel.registerUser(nombre, apellido, sexo, fechaNacimiento, correo, contrasena);
         });
 
-        // Configurar el listener para el TextView (loginText)
         loginText.setOnClickListener(v -> {
             Intent intent = new Intent(SplashActivityRegistro.this, SplashActivityLogin.class);
             startActivity(intent);
@@ -94,7 +91,6 @@ public class SplashActivityRegistro extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     SplashActivityRegistro.this,
                     (datePicker, selectedYear, selectedMonth, selectedDay) -> {
-                        // Formatear la fecha a "YYYY/MM/DD"
                         String fechaSeleccionada = formatDate(selectedYear, selectedMonth + 1, selectedDay);
                         fechaNacimientoTextView.setText(fechaSeleccionada);
                     },
@@ -103,11 +99,8 @@ public class SplashActivityRegistro extends AppCompatActivity {
                     day
             );
 
-            // Establecer límites para la fecha
             datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
             datePickerDialog.getDatePicker().setMaxDate(maxDate.getTimeInMillis());
-
-            // Mostrar el diálogo
             datePickerDialog.show();
         });
     }

@@ -4,15 +4,15 @@ public class KidRequest {
     private String id_persona;
     private String nombre_kid;
     private String apellido_paterno_kid;
-    private String fechaNacimiento;
+    private String fecha_nacimiento_kid;
     private String genero_kid;
 
     // Constructor
-    public KidRequest(String id_persona, String nombre_kid, String apellido_paterno_kid, String fechaNacimiento, String genero_kid) {
+    public KidRequest(String id_persona, String nombre_kid, String apellido_paterno_kid, String fecha_nacimiento_kid, String genero_kid) {
         this.id_persona = id_persona;
         this.nombre_kid = nombre_kid;
         this.apellido_paterno_kid = apellido_paterno_kid;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fecha_nacimiento_kid = fecha_nacimiento_kid;
         this.genero_kid = genero_kid;
     }
 
@@ -42,11 +42,11 @@ public class KidRequest {
     }
 
     public String getEdad_kid() {
-        return fechaNacimiento;
+        return fecha_nacimiento_kid;
     }
 
     public void setEdad_kid(String edad_kid) {
-        this.fechaNacimiento = edad_kid;
+        this.fecha_nacimiento_kid = edad_kid;
     }
 
     public String getGenero_kid() {

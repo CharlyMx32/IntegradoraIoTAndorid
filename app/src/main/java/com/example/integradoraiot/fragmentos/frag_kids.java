@@ -3,6 +3,7 @@ package com.example.integradoraiot.fragmentos;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,10 +26,12 @@ import com.example.integradoraiot.network.ApiResponse;
 import com.example.integradoraiot.network.ApiResponseKids;
 import com.example.integradoraiot.network.ApiService;
 import com.example.integradoraiot.network.RetroFitClient;
+import com.example.integradoraiot.ui.SplashActivityGames;
 import com.example.integradoraiot.ui.SplashActivityPerfil;
 
 import org.w3c.dom.Text;
 
+import java.text.BreakIterator;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -131,25 +135,21 @@ public class frag_kids extends Fragment {
                     day
             );
 
-            // Establecer límites para la fecha
             datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
             datePickerDialog.getDatePicker().setMaxDate(maxDate.getTimeInMillis()); // Máxima: hoy
 
-            // Mostrar el diálogo
             datePickerDialog.show();
         });
 
-        // Configuración del evento para el botón de perfil
         perfilTxt.setOnClickListener(v -> navigateToPerfilFragment());
 
-        // Configuración del evento para el botón "Listo"
         listoButton.setOnClickListener(v -> {
             String nombre_kid = niñoNombre.getText().toString();
             String apellido_paterno_kid = niñoApellido.getText().toString();
-            String fechaNacimiento = fechaNacimientoTextView.getText().toString().trim();
+            String fecha_nacimiento_kid = fechaNacimientoTextView.getText().toString().trim();
             String genero_kid = sexoSpinner.getSelectedItem().toString();
 
-            registerChild(nombre_kid, apellido_paterno_kid, fechaNacimiento, genero_kid);
+            registerChild(nombre_kid, apellido_paterno_kid, fecha_nacimiento_kid, genero_kid);
         });
     }
 
@@ -163,11 +163,24 @@ public class frag_kids extends Fragment {
     }
 
 
-    private void registerChild(String nombre_kid, String apellido_paterno_kid, String fechaNacimiento, String genero_kid) {
-        // Crear el objeto KidRequest con los datos necesarios
-        KidRequest kidRequest = new KidRequest(idPersona, nombre_kid, apellido_paterno_kid, fechaNacimiento, genero_kid);
+    private void registerChild(String nombre_kid, String apellido_paterno_kid, String fecha_nacimiento_kid, String genero_kid) {
+        KidRequest kidRequest = new KidRequest(idPersona, nombre_kid, apellido_paterno_kid, fecha_nacimiento_kid, genero_kid);
 
-        // Configurar Retrofit y la llamada a la API
+        if (nombre_kid.isEmpty() || apellido_paterno_kid.isEmpty() || fecha_nacimiento_kid.isEmpty() || genero_kid.isEmpty()) {
+            Toast.makeText(getContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        EditText niñoNombre = getView().findViewById(R.id.niño_nombre_edit_text);
+        EditText niñoApellido = getView().findViewById(R.id.niño_apellido_edit_text);
+        TextView fechaNacimientoTextView = getView().findViewById(R.id.niño_edad_edit_text);
+        Spinner sexoSpinner = getView().findViewById(R.id.sexo_spinner);
+
+        // Limpiar los campos del formulario inmediatamente después de enviar
+        niñoNombre.setText("");
+        niñoApellido.setText("");
+        fechaNacimientoTextView.setText("");
+        sexoSpinner.setSelection(0); // Selecciona el primer item del spinner
+
         tokenManager = new TokenManager(getContext());
         TokenInterceptor tokenInterceptor = new TokenInterceptor(tokenManager);
         ApiService apiService = RetroFitClient.getClient(tokenInterceptor).create(ApiService.class);
@@ -180,19 +193,22 @@ public class frag_kids extends Fragment {
                 if (response.isSuccessful()) {
                     ApiResponse apiResponse = response.body();
                     if (apiResponse != null) {
-                        // Manejar respuesta exitosa
                         String status = apiResponse.getStatus();
                         String message = apiResponse.getMessage();
-                        // Mostrar un mensaje de éxito al usuario
+
+                        Log.d("API_RESPONSE", "Estado: " + status + ", Mensaje: " + message);
+                        Toast.makeText(getContext(), "Niño registrado con éxito", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // Manejar error en la respuesta
+                    Log.e("API_ERROR", "Error en la respuesta: " + response.errorBody());
+                    Toast.makeText(getContext(), "Error al registrar niño", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
                 // Manejar errores de red
+                Log.e("API_ERROR", "Error en la petición: " + t.getMessage());
             }
         });
     }
