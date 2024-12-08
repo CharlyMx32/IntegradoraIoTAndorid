@@ -1,5 +1,6 @@
 package com.example.integradoraiot.fragmentos;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +27,8 @@ import com.example.integradoraiot.network.RetroFitClient;
 import com.example.integradoraiot.ui.SplashActivityPerfil;
 
 import org.w3c.dom.Text;
+
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,44 +77,85 @@ public class frag_kids extends Fragment {
         TextView perfilTxt = rootView.findViewById(R.id.perfil_txt);
         EditText niñoNombre = rootView.findViewById(R.id.niño_nombre_edit_text);
         EditText niñoApellido = rootView.findViewById(R.id.niño_apellido_edit_text);
-        EditText niñoEdad = rootView.findViewById(R.id.niño_edad_edit_text);
+        TextView fechaNacimientoTextView = rootView.findViewById(R.id.niño_edad_edit_text);
         Spinner sexoSpinner = rootView.findViewById(R.id.sexo_spinner);
         Button listoButton = rootView.findViewById(R.id.listo_button);
 
+        // Inicialmente ocultar los elementos
         niñoNombre.setVisibility(View.GONE);
         niñoApellido.setVisibility(View.GONE);
-        niñoEdad.setVisibility(View.GONE);
+        fechaNacimientoTextView.setVisibility(View.GONE);
         sexoSpinner.setVisibility(View.GONE);
         listoButton.setVisibility(View.GONE);
 
+        // Configuración del evento para mostrar/ocultar elementos
         bienvenidoText.setOnClickListener(v -> {
             if (niñoNombre.getVisibility() == View.VISIBLE) {
                 niñoNombre.setVisibility(View.GONE);
                 niñoApellido.setVisibility(View.GONE);
-                niñoEdad.setVisibility(View.GONE);
+                fechaNacimientoTextView.setVisibility(View.GONE);
                 sexoSpinner.setVisibility(View.GONE);
                 listoButton.setVisibility(View.GONE);
             } else {
                 niñoNombre.setVisibility(View.VISIBLE);
                 niñoApellido.setVisibility(View.VISIBLE);
-                niñoEdad.setVisibility(View.VISIBLE);
+                fechaNacimientoTextView.setVisibility(View.VISIBLE);
                 sexoSpinner.setVisibility(View.VISIBLE);
                 listoButton.setVisibility(View.VISIBLE);
             }
         });
 
+        // Configuración del evento para el TextView de fecha de nacimiento
+        fechaNacimientoTextView.setOnClickListener(view -> {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            // Fecha mínima: hace 12 años
+            final Calendar minDate = Calendar.getInstance();
+            minDate.set(year - 12, month, day);
+
+            // Fecha máxima: hoy
+            final Calendar maxDate = Calendar.getInstance();
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    requireContext(),
+                    (datePicker, selectedYear, selectedMonth, selectedDay) -> {
+                        // Formatear la fecha a "YYYY/MM/DD"
+                        String fechaSeleccionada = formatDate(selectedYear, selectedMonth + 1, selectedDay);
+                        fechaNacimientoTextView.setText(fechaSeleccionada);
+                    },
+                    year - 6, // Ejemplo: edad por defecto de inicio
+                    month,
+                    day
+            );
+
+            // Establecer límites para la fecha
+            datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
+            datePickerDialog.getDatePicker().setMaxDate(maxDate.getTimeInMillis()); // Máxima: hoy
+
+            // Mostrar el diálogo
+            datePickerDialog.show();
+        });
+
+        // Configuración del evento para el botón de perfil
         perfilTxt.setOnClickListener(v -> navigateToPerfilFragment());
 
+        // Configuración del evento para el botón "Listo"
         listoButton.setOnClickListener(v -> {
             String nombre_kid = niñoNombre.getText().toString();
             String apellido_paterno_kid = niñoApellido.getText().toString();
-            int edad_kid = Integer.parseInt(niñoEdad.getText().toString());
+            String fechaNacimiento = fechaNacimientoTextView.getText().toString().trim();
             String genero_kid = sexoSpinner.getSelectedItem().toString();
 
-            registerChild(nombre_kid, apellido_paterno_kid, edad_kid, genero_kid);
+            registerChild(nombre_kid, apellido_paterno_kid, fechaNacimiento, genero_kid);
         });
     }
 
+    private String formatDate(int year, int month, int day) {
+        return String.format("%04d-%02d-%02d", year, month, day);
+    }
 
     private void navigateToPerfilFragment() {
         Intent intent = new Intent(requireContext(), SplashActivityPerfil.class);
@@ -119,9 +163,9 @@ public class frag_kids extends Fragment {
     }
 
 
-    private void registerChild(String nombre_kid, String apellido_paterno_kid, int edad_kid, String genero_kid) {
+    private void registerChild(String nombre_kid, String apellido_paterno_kid, String fechaNacimiento, String genero_kid) {
         // Crear el objeto KidRequest con los datos necesarios
-        KidRequest kidRequest = new KidRequest(idPersona, nombre_kid, apellido_paterno_kid, edad_kid, genero_kid);
+        KidRequest kidRequest = new KidRequest(idPersona, nombre_kid, apellido_paterno_kid, fechaNacimiento, genero_kid);
 
         // Configurar Retrofit y la llamada a la API
         tokenManager = new TokenManager(getContext());
@@ -152,8 +196,5 @@ public class frag_kids extends Fragment {
             }
         });
     }
-
-
-
 }
 
