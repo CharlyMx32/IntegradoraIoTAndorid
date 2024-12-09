@@ -62,5 +62,10 @@ public interface ApiService {
     @POST("iniciar")
     Call<ApiResponse> enviarDatosJuego(@Header("Authorization") String token, @Body HashMap<String, String> datos);
 
+    @POST("finalizar")
+    Call<ApiResponse> finalizarJuego(@Header("Authorization") String token, @Body HashMap<String, String> datos);
+
+    @GET("obtenerresultado")
+    Call<ApiResponse> obtenerResultado(@Header("Authorization") String token, String kidName);
 }
 

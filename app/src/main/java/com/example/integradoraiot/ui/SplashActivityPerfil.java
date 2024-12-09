@@ -50,14 +50,11 @@ public class SplashActivityPerfil extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Eliminar el token
                 tokenManager.removeToken();
 
-                // Redirigir a SplashActivityLogin
                 Intent intent = new Intent(SplashActivityPerfil.this, SplashActivityLogin.class);
                 startActivity(intent);
 
-                // Cerrar la actividad actual (opcional)
                 finish();
             }
         });
@@ -66,7 +63,6 @@ public class SplashActivityPerfil extends AppCompatActivity {
     private void fetchPerfilData(String idPersona, String token) {
         ApiService apiService = RetroFitClient.getClientSinToken().create(ApiService.class);
 
-        // Crear el objeto de solicitud
         UsuarioRequest idRequest = new UsuarioRequest(idPersona);
 
         Call<UsuarioResponse> call = apiService.getPerfil(token, idRequest);
@@ -77,7 +73,6 @@ public class SplashActivityPerfil extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     UsuarioResponse.Usuario usuario = response.body().getUsuario();
 
-                    // Mostrar datos en los TextViews
                     TextView emailTextView = findViewById(R.id.email_text);
                     TextView nombreTextView = findViewById(R.id.nombre_text);
                     TextView apellidoTextView = findViewById(R.id.apellido_text);
@@ -90,7 +85,6 @@ public class SplashActivityPerfil extends AppCompatActivity {
                     sexoTextView.setText(usuario.getSexo());
                     fechaNacimientoTextView.setText(usuario.getFecha_nacimiento());
 
-                    // Mostrar la imagen de perfil
                     ImageView fotoImageView = findViewById(R.id.foto_image);
                     Picasso.get()
                             .load(usuario.getFoto_perfil()) // URL de la imagen
@@ -98,7 +92,14 @@ public class SplashActivityPerfil extends AppCompatActivity {
                             .error(R.drawable.ic_launcher_foreground) // Imagen en caso de error
                             .into(fotoImageView); // ImageView destino
                 } else {
-                    // Manejar error en la respuesta
+                    if (response.code() == 401) {
+                        // Token inválido
+                        // Redirigir a la pantalla de login
+                        Intent intent = new Intent(SplashActivityPerfil.this, SplashActivityLogin.class);
+                        startActivity(intent);
+
+                        finish();
+                    }
                 }
             }
 

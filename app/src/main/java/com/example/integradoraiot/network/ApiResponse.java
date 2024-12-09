@@ -32,6 +32,14 @@ public class ApiResponse {
         return "Operación NOOO exitosa";
     }
 
+    public String getResultado() {
+        return "ganaste";
+    }
+
+    public String getResultado2() {
+        return "perdiste";
+    }
+
     
 
     public static class Tutor {

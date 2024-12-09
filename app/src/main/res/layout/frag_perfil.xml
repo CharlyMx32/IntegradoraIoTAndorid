@@ -146,20 +146,6 @@
 
     <!-- Botón de editar -->
     <Button
-        android:id="@+id/editar_button"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@color/Burple"
-        android:text="Editar"
-        android:textColor="#ffffff"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fecha_nacimiento_text" />
-
-    <!-- Botón de editar -->
-    <Button
         android:id="@+id/logout_button"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
