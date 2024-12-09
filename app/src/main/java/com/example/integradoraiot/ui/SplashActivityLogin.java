@@ -48,6 +48,7 @@ public class SplashActivityLogin extends AppCompatActivity {
         EditText passwordEditText = findViewById(R.id.contrasena_edit_text);
         Button loginButton = findViewById(R.id.iniciar_sesion_button);
         TextView olvideTextView = findViewById(R.id.olvide_text);
+        TextView registroTextView = findViewById(R.id.registro_text);
 
         passwordEditText.setTransformationMethod(android.text.method.PasswordTransformationMethod.getInstance());
 
@@ -64,6 +65,11 @@ public class SplashActivityLogin extends AppCompatActivity {
 
         olvideTextView.setOnClickListener(view -> {
             Intent intent = new Intent(SplashActivityLogin.this, SplashActivityOlvide.class);
+            startActivity(intent);
+        });
+
+        registroTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(SplashActivityLogin.this, SplashActivityRegistro.class);
             startActivity(intent);
         });
 

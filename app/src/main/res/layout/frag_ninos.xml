@@ -92,32 +92,40 @@
         app:layout_constraintTop_toBottomOf="@id/niño_nombre_edit_text" />
 
 
-    <EditText
+    <TextView
         android:id="@+id/niño_edad_edit_text"
-        android:layout_width="342dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:background="@drawable/input_morado"
-        android:hint="Edad"
+        android:clickable="true"
+        android:focusable="true"
+        android:hint="Fecha Nacimiento"
+        android:maxHeight="48dp"
         android:minHeight="48dp"
+        android:layout_marginTop="20dp"
         android:padding="12dp"
         android:textColor="#333333"
-        android:textSize="16sp"
+        android:textSize="15.8sp"
         app:layout_constraintStart_toStartOf="@id/niño_apellido_edit_text"
-        app:layout_constraintTop_toBottomOf="@id/niño_apellido_edit_text" />
+        app:layout_constraintTop_toBottomOf="@id/niño_apellido_edit_text"
+        app:layout_constraintEnd_toStartOf="@id/sexo_spinner"
+        app:layout_constraintHorizontal_chainStyle="spread_inside" />
 
     <Spinner
         android:id="@+id/sexo_spinner"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/input_morado"
-        android:minHeight="48dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:background="@drawable/input_morado"
         android:entries="@array/sexo_options"
+        android:minHeight="48dp"
         android:padding="12dp"
-        app:layout_constraintStart_toStartOf="@+id/niño_edad_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/niño_edad_edit_text" />
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/niño_edad_edit_text"
+        app:layout_constraintTop_toBottomOf="@id/niño_apellido_edit_text" />
 
     <Button
         android:id="@+id/listo_button"
