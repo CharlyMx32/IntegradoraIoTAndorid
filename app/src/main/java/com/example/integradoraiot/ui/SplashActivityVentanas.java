@@ -43,7 +43,6 @@ public class SplashActivityVentanas extends AppCompatActivity {
             // Este método es donde podemos hacer ajustes adicionales
         }).attach();
 
-        // Personalizamos las vistas de las pestañas para agregar márgenes
         customizeTabLayout(tabLayout);
     }
 
