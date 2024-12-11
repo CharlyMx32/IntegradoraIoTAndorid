@@ -40,6 +40,9 @@ public class activityJuegos extends AppCompatActivity {
     private int colorIndex = 0;
     private boolean isInGame = true;
     private int backPressCount = 0;
+    private Runnable runnable;
+    private String currentGameState = "";
+    private String kidName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,15 +59,60 @@ public class activityJuegos extends AppCompatActivity {
         handler.postDelayed(changeColorRunnable, 500);
 
         Intent intent = getIntent();
-        int kidId = intent.getIntExtra("id_kid", -1);
-        String kidName = intent.getStringExtra("kid_name");
+        kidName = intent.getStringExtra("kid_name");
         String kidLastName = intent.getStringExtra("kid_lastname");
         int kidAge = intent.getIntExtra("kid_age", 0);
         String gameName = intent.getStringExtra("gameName");
 
         modelo_kids kid = new modelo_kids(kidName, kidLastName, kidAge, gameName);
         enviarDatosAlJuego(gameName, kid);
+
+        handler = new Handler();
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                termino();
+                handler.postDelayed(this, 10000);
+            }
+        };
+
+        handler.postDelayed(runnable, 10000);
+
+        handler.postDelayed(stateRunnable, 8000);
     }
+
+    private void termino() {
+        ApiService apiService = RetroFitClient
+                .getClient(new TokenInterceptor(new TokenManager(this)))
+                .create(ApiService.class);
+
+        // Realiza la solicitud GET al endpoint
+        Call<ApiResponse> call = apiService.status();
+
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    // Aquí podrías manejar la respuesta si es necesario
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                // Manejo de error
+            }
+        });
+    }
+
+    private Runnable stateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            verificarEstadoPartida(kidName);  // Pasa el kidName como argumento
+            handler.postDelayed(this, 8000);  // Repetir cada 8 segundos
+        }
+    };
+    
 
     private Runnable changeColorRunnable = new Runnable() {
         @Override
@@ -96,18 +144,13 @@ public class activityJuegos extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     handler.removeCallbacks(changeColorRunnable);
                     ApiResponse apiResponse = response.body();
-                    String resultado = apiResponse.getResultado();
+                    String resultado = apiResponse.getMessage();
 
-                    if ("partida iniciada correctamente".equalsIgnoreCase(resultado)) {
-                        actualizarPantallaExito(gameName);
-                        esperarResultadoDelJuego(kid.getNombre());
-                    } else if ("partida finalizada".equalsIgnoreCase(resultado)) {
-                        actualizarPantallaVictoria();
-                    }
+                    actualizarPantallaExito(gameName);
+                    esperarResultadoDelJuego(kid.getNombre());
                 } else {
                     mostrarError("Error al iniciar partida. Intenta de nuevo.");
                 }
-
             }
 
             @Override
@@ -118,29 +161,37 @@ public class activityJuegos extends AppCompatActivity {
     }
 
     private void esperarResultadoDelJuego(String kidName) {
-        handler.postDelayed(() -> verificarResultadoDelJuego(kidName), 180000);
+        handler.postDelayed(() -> verificarEstadoPartida(kidName), 1000);
     }
 
-    private void verificarResultadoDelJuego(String kidName) {
-        String token = "Bearer " + obtenerToken();
+    private void verificarEstadoPartida(String kidName) {
+        String token = obtenerToken();
         ApiService apiService = RetroFitClient
                 .getClient(new TokenInterceptor(new TokenManager(this)))
                 .create(ApiService.class);
+        HashMap<String, String> datos = new HashMap<>();
+        datos.put("nombre_kid", kidName);
 
-        Call<ApiResponse> call = apiService.obtenerResultado(token, kidName);
+        Call<ApiResponse> call = apiService.obtenerResultado("Bearer " + token, datos);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ApiResponse apiResponse = response.body();
-                    String resultado = apiResponse.getResultado();
-                    if ("partida en curso".equalsIgnoreCase(resultado)) {
-                        esperarResultadoDelJuego(kidName); // Seguir esperando
-                    } else if ("partida finalizada".equalsIgnoreCase(resultado)) {
-                        actualizarPantallaVictoria();
-                    }
-                } else {
-                    mostrarError("Error al obtener resultado. Intenta de nuevo.");
+
+                    String mensaje = apiResponse.getMensaje();
+                    String estado = apiResponse.getEstado();
+                    String tiempoJugado = apiResponse.getTiempoJugado();
+                    String tiempoTranscurrido = apiResponse.getTiempoTranscurrido();
+                        if ("activa".equalsIgnoreCase(estado)) {
+                            actualizarPantallaProgreso(tiempoTranscurrido);
+                        } else if ("finalizada".equalsIgnoreCase(estado)) {
+                            actualizarPantallaVictoria(tiempoJugado);
+                        }
+
+                }
+                else {
+                    mostrarError("Esperando datos de la partida");
                 }
             }
 
@@ -151,19 +202,30 @@ public class activityJuegos extends AppCompatActivity {
         });
     }
 
-    private void actualizarPantallaExito(String gameName) {
+
+    private void actualizarPantallaProgreso(String tiempoTranscurrido) {
         TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
-        nameTextView.setText("Partida en curso: " + gameName);
-        nameTextView.setTextColor(Color.BLACK);
+        nameTextView.setText("Partida en curso: " + tiempoTranscurrido);  // Muestra el tiempo transcurrido
+        nameTextView.setTextColor(Color.BLUE);
         nameTextView.setVisibility(View.VISIBLE);
     }
 
-    private void actualizarPantallaVictoria() {
+    private void actualizarPantallaVictoria(String tiempoJugado) {
         TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
-        nameTextView.setText("¡Has ganado!");
+        nameTextView.setText("¡Partida finalizada! Tiempo jugado: " + tiempoJugado);  // Muestra el tiempo jugado total
         nameTextView.setTextColor(Color.GREEN);
         nameTextView.setVisibility(View.VISIBLE);
     }
+
+    private void actualizarPantallaExito(String gameName) {
+        TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
+        nameTextView.setText("Partida en curso: " + gameName);  // Se muestra el nombre del juego al iniciar
+        nameTextView.setTextColor(Color.BLACK);
+        nameTextView.setVisibility(View.VISIBLE);
+        animationView.setVisibility(View.VISIBLE);
+        changeColorRunnable.run();
+    }
+
 
     private void mostrarError(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();

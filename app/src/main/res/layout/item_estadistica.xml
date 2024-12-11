@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="8dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título de la estadística -->
+        <TextView
+            android:id="@+id/tvStatTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estadística"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Tiempo Jugado -->
+        <TextView
+            android:id="@+id/tvPlayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiempo Jugado: 00:00:00"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="@color/black" />
+
+        <!-- Número de Partidas Jugadas -->
+        <TextView
+            android:id="@+id/tvGamesPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Partidas Jugadas: 0"
+            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

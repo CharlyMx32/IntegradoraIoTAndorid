@@ -16,6 +16,7 @@ import com.example.integradoraiot.models.UsuarioResponse;
 
 import java.util.List; // Importa la clase List
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -62,10 +63,11 @@ public interface ApiService {
     @POST("iniciar")
     Call<ApiResponse> enviarDatosJuego(@Header("Authorization") String token, @Body HashMap<String, String> datos);
 
-    @POST("finalizar")
-    Call<ApiResponse> finalizarJuego(@Header("Authorization") String token, @Body HashMap<String, String> datos);
+    @POST("obtenerresultado")
+    Call<ApiResponse> obtenerResultado(@Header("Authorization") String token, @Body HashMap<String, String> datos);
 
-    @GET("obtenerresultado")
-    Call<ApiResponse> obtenerResultado(@Header("Authorization") String token, String kidName);
+    @GET("terminar")
+    Call<ApiResponse> status();
+
 }
 

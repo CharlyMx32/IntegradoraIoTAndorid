@@ -16,6 +16,8 @@ public class KidRequest {
         this.genero_kid = genero_kid;
     }
 
+
+
     // Getters y Setters
     public String getId_persona() {
         return id_persona;
