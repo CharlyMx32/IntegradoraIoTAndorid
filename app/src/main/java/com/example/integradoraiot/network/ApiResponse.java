@@ -1,12 +1,17 @@
 package com.example.integradoraiot.network;
 
 import java.util.List;
+
+import com.example.integradoraiot.models.estadisticas;
 import com.example.integradoraiot.models.modelo_kids;
 import com.google.gson.annotations.SerializedName;
 
 public class ApiResponse {
     private Tutor tutor;
     private List<modelo_kids> niños;
+
+    @SerializedName("estadisticas")
+    private estadisticas estadisticas;
 
     // Getters y setters
     public Tutor getTutor() {
@@ -30,8 +35,8 @@ public class ApiResponse {
 
     private String mensaje;
     private String estado;
-    private String tiempoJugado;  // Para el tiempo total cuando la partida finaliza
-    private String tiempoTranscurrido;  // Para el tiempo transcurrido cuando la partida está activa
+    private String tiempoJugado;
+    private String tiempoTranscurrido;
 
     // Getter y Setter para mensaje
     public String getMensaje() {
@@ -69,13 +74,20 @@ public class ApiResponse {
         this.tiempoTranscurrido = tiempoTranscurrido;
     }
 
+    public estadisticas getEstadisticas() {
+        return estadisticas;
+    }
+
+    public void setEstadisticas(estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
+    }
+
     public static class Tutor {
         private int id_tutor;
         private int id_persona;
         private String nombre;
         private String apellido_paterno;
         private String fotoPerfil;
-
 
         public String getNombre() {
             return nombre;
@@ -90,3 +102,4 @@ public class ApiResponse {
         }
     }
 }
+

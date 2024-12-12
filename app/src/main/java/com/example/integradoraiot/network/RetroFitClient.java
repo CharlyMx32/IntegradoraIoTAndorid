@@ -10,43 +10,52 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroFitClient {
 
-    private static final String BASE_URL = "https://2688-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
-    private static Retrofit retrofit = null;
+    private static final String BASE_URL = "https://7464-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
+    private static final String ADAFRUIT_BASE_URL = "https://io.adafruit.com/";
 
     public static Retrofit getClient(TokenInterceptor tokenInterceptor) {
-        if (retrofit == null) {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .addInterceptor(tokenInterceptor)
-                    .build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(tokenInterceptor)
+                .build();
 
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(client)
-                    .build();
-        }
-        return retrofit;
+        return new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
     }
 
     public static Retrofit getClientSinToken() {
-        if (retrofit == null) {
-            Gson gson = new GsonBuilder()
-                    .setLenient()
-                    .create();
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
-            OkHttpClient client = new OkHttpClient.Builder()
-                    .build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
 
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .client(client)
-                    .build();
-        }
-        return retrofit;
+        return new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
+    }
+
+    public static Retrofit getAdafruitClient() {
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .build();
+
+        return new Retrofit.Builder()
+                .baseUrl(ADAFRUIT_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build();
     }
 }

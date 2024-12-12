@@ -48,6 +48,9 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("com.auth0.android:jwtdecode:2.0.1")
 
+    implementation ("com.google.code.gson:gson:2.8.9")
+
+
     implementation ("androidx.recyclerview:recyclerview:1.3.1")
 
     //modelo vista vista-modelo
