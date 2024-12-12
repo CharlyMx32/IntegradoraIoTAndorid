@@ -17,6 +17,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.TokenInterceptor;
 import com.example.integradoraiot.TokenManager;
+import com.example.integradoraiot.models.Adafruit;
+import com.example.integradoraiot.models.estadisticas;
 import com.example.integradoraiot.models.modelo_kids;
 import com.example.integradoraiot.network.ApiResponse;
 import com.example.integradoraiot.network.ApiService;
@@ -40,9 +42,8 @@ public class activityJuegos extends AppCompatActivity {
     private int colorIndex = 0;
     private boolean isInGame = true;
     private int backPressCount = 0;
-    private Runnable runnable;
-    private String currentGameState = "";
     private String kidName;
+    private boolean isGameActive = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,46 +70,14 @@ public class activityJuegos extends AppCompatActivity {
 
         handler = new Handler();
 
-        runnable = new Runnable() {
-            @Override
-            public void run() {
-                termino();
-                handler.postDelayed(this, 10000);
-            }
-        };
-
-        handler.postDelayed(runnable, 10000);
-
         handler.postDelayed(stateRunnable, 8000);
     }
 
-    private void termino() {
-        ApiService apiService = RetroFitClient
-                .getClient(new TokenInterceptor(new TokenManager(this)))
-                .create(ApiService.class);
-
-        // Realiza la solicitud GET al endpoint
-        Call<ApiResponse> call = apiService.status();
-
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Aquí podrías manejar la respuesta si es necesario
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-                // Manejo de error
-            }
-        });
-    }
 
     private Runnable stateRunnable = new Runnable() {
         @Override
         public void run() {
-            verificarEstadoPartida(kidName);  // Pasa el kidName como argumento
+            verificarEstadoPartida();  // Pasa el kidName como argumento
             handler.postDelayed(this, 8000);  // Repetir cada 8 segundos
         }
     };
@@ -146,7 +115,6 @@ public class activityJuegos extends AppCompatActivity {
                     ApiResponse apiResponse = response.body();
                     String resultado = apiResponse.getMessage();
 
-                    actualizarPantallaExito(gameName);
                     esperarResultadoDelJuego(kid.getNombre());
                 } else {
                     mostrarError("Error al iniciar partida. Intenta de nuevo.");
@@ -161,37 +129,60 @@ public class activityJuegos extends AppCompatActivity {
     }
 
     private void esperarResultadoDelJuego(String kidName) {
-        handler.postDelayed(() -> verificarEstadoPartida(kidName), 1000);
+        handler.postDelayed(() -> verificarEstadoPartida(), 1000);
     }
 
-    private void verificarEstadoPartida(String kidName) {
-        String token = obtenerToken();
+    private void verificarEstadoPartida() {
+        ApiService apiService = RetroFitClient.getAdafruitClient().create(ApiService.class);
+
+        if (!isGameActive) {
+            return;
+        }
+
+        Call<Adafruit> call = apiService.getFeedStatus();
+        call.enqueue(new Callback<Adafruit>() {
+            @Override
+            public void onResponse(Call<Adafruit> call, Response<Adafruit> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    String lastValue = response.body().getLastValue();
+                    if ("1".equals(lastValue)) {
+                        iniciarPartida();
+                    } else if ("0".equals(lastValue)) {
+                        terminarPartida();
+                        obtenerEstadisticas();
+                        isGameActive = false;
+                    }
+                } else {
+                    mostrarError("Error al obtener el estado del juego");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Adafruit> call, Throwable t) {
+                mostrarError("Fallo en la conexión. Revisa tu red.");
+            }
+        });
+    }
+
+    private void obtenerEstadisticas() {
         ApiService apiService = RetroFitClient
                 .getClient(new TokenInterceptor(new TokenManager(this)))
                 .create(ApiService.class);
-        HashMap<String, String> datos = new HashMap<>();
-        datos.put("nombre_kid", kidName);
 
-        Call<ApiResponse> call = apiService.obtenerResultado("Bearer " + token, datos);
+        Call<ApiResponse> call = apiService.obtenerEstadisticas();  // Endpoint para obtener estadísticas
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     ApiResponse apiResponse = response.body();
+                    estadisticas stats = apiResponse.getEstadisticas();
 
-                    String mensaje = apiResponse.getMensaje();
-                    String estado = apiResponse.getEstado();
-                    String tiempoJugado = apiResponse.getTiempoJugado();
-                    String tiempoTranscurrido = apiResponse.getTiempoTranscurrido();
-                        if ("activa".equalsIgnoreCase(estado)) {
-                            actualizarPantallaProgreso(tiempoTranscurrido);
-                        } else if ("finalizada".equalsIgnoreCase(estado)) {
-                            actualizarPantallaVictoria(tiempoJugado);
-                        }
+                    Intent intent = new Intent(activityJuegos.this, activityestadisticas.class);
 
-                }
-                else {
-                    mostrarError("Esperando datos de la partida");
+                    intent.putExtra("estadisticas",  stats);  // Pasar el objeto estadisticas
+                    startActivity(intent);
+                } else {
+                    mostrarError("Error al obtener las estadísticas");
                 }
             }
 
@@ -202,30 +193,19 @@ public class activityJuegos extends AppCompatActivity {
         });
     }
 
-
-    private void actualizarPantallaProgreso(String tiempoTranscurrido) {
+    private void iniciarPartida() {
         TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
-        nameTextView.setText("Partida en curso: " + tiempoTranscurrido);  // Muestra el tiempo transcurrido
-        nameTextView.setTextColor(Color.BLUE);
-        nameTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void actualizarPantallaVictoria(String tiempoJugado) {
-        TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
-        nameTextView.setText("¡Partida finalizada! Tiempo jugado: " + tiempoJugado);  // Muestra el tiempo jugado total
-        nameTextView.setTextColor(Color.GREEN);
-        nameTextView.setVisibility(View.VISIBLE);
-    }
-
-    private void actualizarPantallaExito(String gameName) {
-        TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
-        nameTextView.setText("Partida en curso: " + gameName);  // Se muestra el nombre del juego al iniciar
+        nameTextView.setText("Jugando");  // Se muestra el nombre del juego al iniciar
         nameTextView.setTextColor(Color.BLACK);
         nameTextView.setVisibility(View.VISIBLE);
-        animationView.setVisibility(View.VISIBLE);
-        changeColorRunnable.run();
     }
 
+    private void terminarPartida() {
+        TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
+        nameTextView.setText("Partida terminada");
+        isGameActive = false;
+        obtenerEstadisticas();
+    }
 
     private void mostrarError(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
