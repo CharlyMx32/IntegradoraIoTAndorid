@@ -27,4 +27,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:text="Ver"
+        app:layout_constraintTop_toTopOf="@id/tvApellido"
+        app:layout_constraintBottom_toBottomOf="@id/tvApellido"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

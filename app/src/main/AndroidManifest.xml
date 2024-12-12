@@ -42,6 +42,7 @@
         <activity android:name=".ui.activityJuegos" />
         <activity android:name=".ui.SplashActivityGames" />
         <activity android:name=".ui.activityestadisticas" />
+        <activity android:name=".ui.SplashEstadistica" />
     </application>
 
 </manifest>

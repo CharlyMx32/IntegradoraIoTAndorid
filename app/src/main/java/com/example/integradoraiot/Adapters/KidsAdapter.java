@@ -1,8 +1,10 @@
 package com.example.integradoraiot.Adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.integradoraiot.models.modelo_kids;
 import com.example.integradoraiot.R;
+import com.example.integradoraiot.ui.SplashEstadistica;
+
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -27,7 +33,6 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsAdapter.KidsViewHolder
         notifyDataSetChanged();  // Notifica al RecyclerView que la lista ha cambiado
     }
 
-
     @NonNull
     @Override
     public KidsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,10 +47,22 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsAdapter.KidsViewHolder
         holder.lastNameTextView.setText("Apellido: " + modelo_kids.getApellido_paterno());
         holder.ageTextView.setText("Edad: " + modelo_kids.getEdad() + " años");
 
-        // Si tienes una foto de perfil, la configuras aquí
-        // if (modelo_kids.getFoto_perfil() != null) {
-        //     holder.profileImage.setImageResource(R.drawable.ic_some_image);
-        // }
+        holder.btnVer.setOnClickListener(v -> {
+            try {
+                // Crear el objeto JSON con los datos del niño
+                JSONObject kidJson = new JSONObject();
+                kidJson.put("nombre_kid", modelo_kids.getNombre());
+                kidJson.put("apellido_paterno_kid", modelo_kids.getApellido_paterno());
+
+                // Convertir el objeto JSON a cadena y enviarlo en el Intent
+                Intent intent = new Intent(holder.itemView.getContext(), SplashEstadistica.class);
+                intent.putExtra("kid_data", kidJson.toString());  // Pasa el JSON como cadena
+                holder.itemView.getContext().startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @Override
@@ -53,11 +70,10 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsAdapter.KidsViewHolder
         return kidsList != null ? kidsList.size() : 0;
     }
 
-
-
     static class KidsViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, lastNameTextView, ageTextView;
         ImageView profileImage;
+        Button btnVer;
 
         public KidsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +81,7 @@ public class KidsAdapter extends RecyclerView.Adapter<KidsAdapter.KidsViewHolder
             lastNameTextView = itemView.findViewById(R.id.child_lastname);
             ageTextView = itemView.findViewById(R.id.child_age);
             profileImage = itemView.findViewById(R.id.img_child);
+            btnVer = itemView.findViewById(R.id.btnVer);
         }
     }
 }
