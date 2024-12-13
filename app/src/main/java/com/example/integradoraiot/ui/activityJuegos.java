@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.integradoraiot.MainActivity;
 import com.example.integradoraiot.R;
 import com.example.integradoraiot.TokenInterceptor;
 import com.example.integradoraiot.TokenManager;
@@ -160,7 +161,6 @@ public class activityJuegos extends AppCompatActivity {
                             iniciarPartida();
                         } else if ("0".equals(lastValue)) {
                             terminarPartida();
-                            obtenerEstadisticasDos();
                             isGameActive = false;
                         }
                     } else {
@@ -186,7 +186,6 @@ public class activityJuegos extends AppCompatActivity {
                             iniciarPartida();
                         } else if ("0".equals(lastValue)) {
                             terminarPartida();
-                            obtenerEstadisticas();
                             isGameActive = false;
                         }
                     } else {
@@ -244,7 +243,7 @@ public class activityJuegos extends AppCompatActivity {
                     estadisticas stats = apiResponse.getEstadisticas();
 
                     Intent intent = new Intent(activityJuegos.this, activityestadisticas.class);
-                    intent.putExtra("estadisticas",  stats);  // Pasar el objeto estadisticas
+                    intent.putExtra("estadisticas",  stats);
                     startActivity(intent);
                 } else {
                     mostrarError("Error al obtener las estadísticas");
@@ -263,12 +262,38 @@ public class activityJuegos extends AppCompatActivity {
         nameTextView.setText("Jugando");
         nameTextView.setTextColor(Color.BLACK);
         nameTextView.setVisibility(View.VISIBLE);
+        animationView.setVisibility(View.GONE);
     }
 
     private void terminarPartida() {
         TextView nameTextView = findViewById(R.id.tv_titulo_juegos);
-        nameTextView.setText("Partida terminada");
         isGameActive = false;
+
+        if ("Luz verde luz roja".equals(gameName)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Partida terminada")
+                    .setMessage("¿Deseas ver tus estadísticas?")
+                    .setPositiveButton("Sí", (dialog, which) -> obtenerEstadisticasDos())
+                    .setNegativeButton("No", (dialog, which) -> {
+                        dialog.dismiss();
+                        Intent intent = new Intent(activityJuegos.this, MainActivity.class);
+                        startActivity(intent);
+                    })
+                    .setCancelable(false)
+                    .show();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Partida terminada")
+                    .setMessage("¿Deseas ver tus estadísticas?")
+                    .setPositiveButton("Sí", (dialog, which) -> obtenerEstadisticas())
+                    .setNegativeButton("No", (dialog, which) -> {
+                        dialog.dismiss();
+                        Intent intent = new Intent(activityJuegos.this, MainActivity.class);
+                        startActivity(intent);
+                    })
+                    .setCancelable(false)
+                    .show();
+        }
         obtenerEstadisticas();
     }
 
