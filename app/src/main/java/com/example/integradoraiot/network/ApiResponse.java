@@ -70,6 +70,13 @@ public class ApiResponse {
         return tiempoTranscurrido;
     }
 
+    private List<Estadistica> estadistica;
+
+    public List<Estadistica> getEstadistica() {
+        return estadistica;
+    }
+
+
     public void setTiempoTranscurrido(String tiempoTranscurrido) {
         this.tiempoTranscurrido = tiempoTranscurrido;
     }
@@ -100,6 +107,46 @@ public class ApiResponse {
         public String getFotoPerfil() {
             return fotoPerfil;
         }
+
+        private List<Estadistica> estadisticas;
+
+        public List<Estadistica> getEstadisticas() {
+            return estadisticas;
+        }
+
+        public void setEstadisticas(List<Estadistica> estadisticas) {
+            this.estadisticas = estadisticas;
+        }
+
+
     }
+    public static class Estadistica {
+        private String nombre_juego;
+        private String total_tiempo_jugado;
+        private int numero_partidas;
+
+        public String getNombre_juego() {
+            return nombre_juego;
+        }
+
+        public void setNombre_juego(String nombre_juego) {
+            this.nombre_juego = nombre_juego;
+        }
+
+        public String getTotal_tiempo_jugado() {
+            return total_tiempo_jugado;
+        }
+
+        public void setTotal_tiempo_jugado(String total_tiempo_jugado) {
+            this.total_tiempo_jugado = total_tiempo_jugado;
+        }
+
+        public int getNumero_partidas() {
+            return numero_partidas;
+        }
+
+
+    }
+
 }
 

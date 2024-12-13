@@ -6,8 +6,10 @@ import java.util.HashMap;
 import com.example.integradoraiot.models.Adafruit;
 import com.example.integradoraiot.models.Descripcion;
 import com.example.integradoraiot.models.Game;
+import com.example.integradoraiot.models.KidRequest2;
 import com.example.integradoraiot.models.LoginRequest;
 import com.example.integradoraiot.models.LoginResponse;
+import com.example.integradoraiot.models.NewResponse;
 import com.example.integradoraiot.models.RegisterRequest;
 import com.example.integradoraiot.models.RegisterResponse;
 import com.example.integradoraiot.models.RespuestaRestablecer;
@@ -68,9 +70,19 @@ public interface ApiService {
     @GET("terminar")
     Call<ApiResponse> obtenerEstadisticas();
 
-
     @GET("api/v2/EquipoIoT/feeds/game-status")
     Call<Adafruit> getFeedStatus();
 
+    @POST("v2/iniciar")
+    Call<ApiResponse> enviarDatosJuegoDos(@Header("Authorization") String token, @Body HashMap<String, String> datos);
+
+    @GET("v2/terminar")
+    Call<ApiResponse> obtenerEstadisticasDos();
+
+    @GET("api/v2/EquipoIoT/feeds/game-status-two")
+    Call<Adafruit> getFeedStatusDos();
+
+    @POST("generales")
+    Call<NewResponse> getGenerales(@Body KidRequest2 request);
 }
 
