@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroFitClient {
 
-    private static final String BASE_URL = "https://25f8-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
+    private static final String BASE_URL = "https://de88-187-190-56-49.ngrok-free.app/api/"; // URL de tu API
     private static final String ADAFRUIT_BASE_URL = "https://io.adafruit.com/";
 
     public static Retrofit getClient(TokenInterceptor tokenInterceptor) {

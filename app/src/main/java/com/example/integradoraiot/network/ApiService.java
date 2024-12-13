@@ -73,6 +73,15 @@ public interface ApiService {
     @GET("api/v2/EquipoIoT/feeds/game-status")
     Call<Adafruit> getFeedStatus();
 
+    @POST("v2/iniciar")
+    Call<ApiResponse> enviarDatosJuegoDos(@Header("Authorization") String token, @Body HashMap<String, String> datos);
+
+    @GET("v2/terminar")
+    Call<ApiResponse> obtenerEstadisticasDos();
+
+    @GET("api/v2/EquipoIoT/feeds/game-status-two")
+    Call<Adafruit> getFeedStatusDos();
+
     @POST("generales")
     Call<NewResponse> getGenerales(@Body KidRequest2 request);
 }
